@@ -1,0 +1,28 @@
+{
+    "name": "mwillbanks/zfc-twitter-bootstrap",
+    "description": "A module that assists in implementing Twitter Bootstrap for ZF2",
+    "type": "library",
+    "keywords": [
+        "zf2"
+    ],
+    "homepage": "https://github.com/mwillbanks/ZfcTwitterBootstrap",
+    "authors": [
+        {
+            "name": "Mike Willbanks",
+            "email": "mike@digitalstruct.com",
+            "homepage": "http://blog.digitalstruct.com/"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "zendframework/zendframework": "dev-master",
+    },
+    "autoload": {
+        "psr-0": {
+            "ZfcTwitterBootstrap": "src/"
+        },
+        "classmap": [
+            "./"
+        ]
+    }
+}
