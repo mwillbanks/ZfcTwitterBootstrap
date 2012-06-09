@@ -2,6 +2,14 @@ ZfcTwitterBootstrap
 ===================
 Version 0.1.0 Created by Mike Willbanks
 
+Naming
+------
+
+This module is currently named *Zfc*TwitterBootstrap since the goal is to
+ultimately get this into the ZF-Commons area.  Once this gets more to a
+feature complete state, it will be submitted to a vote for ZF-Commons.
+If the module does not make it, it will be renamed.
+
 Introduction
 ------------
 
