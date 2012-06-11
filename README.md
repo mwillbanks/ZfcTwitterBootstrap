@@ -24,6 +24,32 @@ Requirements
 
 * [Zend Framework 2](https://github.com/zendframework/zf2) (latest master)
 
+Installation
+------------
+Your composer.json should include the following. 
+
+	{
+	"repositories": [
+	        {
+	            "type": "package",
+	            "package": {
+	                "version": "master",
+	                "name": "ZfcTwitterBootstrap",
+	                "source": {
+	                    "type": "git",
+	                    "url": "https://github.com/mwillbanks/ZfcTwitterBootstrap",
+	                    "reference": "master"
+	                } 
+	            }
+
+	        }
+	    ],
+		"require": {
+		        "ZfcTwitterBootstrap": "master"
+		    }
+    }
+ 
+
 Features
 --------
 * Form Integration
