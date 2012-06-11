@@ -3,7 +3,7 @@
     "description": "A module that assists in implementing Twitter Bootstrap for ZF2",
     "type": "library",
     "keywords": [
-        "zf2"
+        "zf2", "twBootstrap", "Twitter Bootstrap"
     ],
     "homepage": "https://github.com/mwillbanks/ZfcTwitterBootstrap",
     "authors": [

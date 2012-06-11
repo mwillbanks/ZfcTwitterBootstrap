@@ -57,7 +57,7 @@ class FormElement extends ZendFormElement
     /**
      * @var string
      */
-    protected $controlWrapper = '<div class="controls" id="controls-%s">%s%s</div>';
+    protected $controlWrapper = '<div class="controls" id="controls-%s">%s%s%s</div>';
 
     /**
      * Set Label Helper
