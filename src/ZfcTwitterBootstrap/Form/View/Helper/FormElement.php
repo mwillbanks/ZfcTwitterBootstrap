@@ -268,7 +268,7 @@ class FormElement extends ZendFormElement
             $id,
             $elementHelper->render($element),
             $descriptionHelper->render($element),
-            $elementErrorHelper->render($element),
+            $elementErrorHelper->render($element)
         );
 
 
