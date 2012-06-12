@@ -78,6 +78,6 @@ Usage
     $form = $this->form;
     $form->prepare();
     echo $this->form()->openTag($form);
-    echo $this->formElement($this->form->get('element'));
+    echo $this->formElementWrapper($this->form->get('element'));
     echo $this->form()->closeTag();
     ?>>

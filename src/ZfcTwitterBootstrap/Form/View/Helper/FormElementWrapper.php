@@ -10,7 +10,7 @@
 namespace ZfcTwitterBootstrap\Form\View\Helper;
 
 use Zend\Form\ElementInterface;
-use Zend\Form\View\Helper\FormElement as ZendFormElement;
+use Zend\Form\View\Helper\FormElement;
 use Zend\Form\View\Helper\FormLabel;
 use Zend\Form\View\Helper\FormElementErrors;
 use Zend\View\Helper\Escape;
@@ -22,7 +22,7 @@ use Zend\View\Helper\Escape;
  * @package ZfcTwitterBootstrap\View
  * @subpackage Helper
  */
-class FormElement extends ZendFormElement
+class FormElementWrapper extends FormElement
 {
     /**
      * @var Zend\Form\View\Helper\FormLabel
@@ -117,7 +117,7 @@ class FormElement extends ZendFormElement
      * @param Zend\Form\View\Helper\FormElement $elementHelper
      * @return FormElement
      */
-    public function setElementHelper(ZendFormElement $elementHelper)
+    public function setElementHelper(FormElement $elementHelper)
     {
         $elementHelper->setView($this->getView());
         $this->elementHelper = $elementHelper;
@@ -132,7 +132,7 @@ class FormElement extends ZendFormElement
     public function getElementHelper()
     {
         if (!$this->elementHelper) {
-            $this->setElementHelper(new ZendFormElement());
+            $this->setElementHelper($this->view->plugin('formElement'));
         }
         return $this->elementHelper;
     }

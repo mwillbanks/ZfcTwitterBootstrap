@@ -16,7 +16,7 @@ return array(
     ),
     'view_manager' => array(
         'helper_map' => array(
-            'formelement' => 'ZfcTwitterBootstrap\Form\View\Helper\FormElement',
+            'formelementwrapper' => 'ZfcTwitterBootstrap\Form\View\Helper\FormElementWrapper',
             'formrenderer' => 'ZfcTwitterBootstrap\Form\View\Helper\FormRenderer',
             'formdescription' => 'ZfcTwitterBootstrap\Form\View\Helper\FormDescription',
         ),
