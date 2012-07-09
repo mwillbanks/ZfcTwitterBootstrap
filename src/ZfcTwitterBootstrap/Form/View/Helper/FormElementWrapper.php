@@ -13,7 +13,7 @@ use Zend\Form\ElementInterface;
 use Zend\Form\View\Helper\FormElement;
 use Zend\Form\View\Helper\FormLabel;
 use Zend\Form\View\Helper\FormElementErrors;
-use Zend\View\Helper\Escape;
+use Zend\View\Helper\EscapeHtml;
 
 /**
  * Form Element
@@ -35,7 +35,7 @@ class FormElementWrapper extends FormElement
     protected $elementHelper;
 
     /**
-     * @var Zend\View\Helper\Escape
+     * @var Zend\View\Helper\EscapeHtml
      */
     protected $escapeHelper;
 
@@ -86,12 +86,12 @@ class FormElementWrapper extends FormElement
     }
 
     /**
-     * Set Escape Helper
+     * Set EscapeHtml Helper
      * 
-     * @param Zend\View\Helper\Escape $escapeHelper
+     * @param Zend\View\Helper\EscapeHtml $escapeHelper
      * @return FormElement
      */
-    public function setEscapeHelper(Escape $escapeHelper)
+    public function setEscapeHtmlHelper(EscapeHtml $escapeHelper)
     {
         $escapeHelper->setView($this->getView());
         $this->escapeHelper = $escapeHelper;
@@ -99,14 +99,14 @@ class FormElementWrapper extends FormElement
     }
 
     /**
-     * Get Escape Helper
+     * Get EscapeHtml Helper
      *
-     * @return Zend\View\Helper\Escape
+     * @return Zend\View\Helper\EscapeHtml
      */
-    public function getEscapeHelper()
+    public function getEscapeHtmlHelper()
     {
         if (!$this->escapeHelper) {
-            $this->setEscapeHelper($this->view->plugin('escape'));
+            $this->setEscapeHtmlHelper($this->view->plugin('escapeHtml'));
         }
         return $this->escapeHelper;
     }
@@ -244,7 +244,7 @@ class FormElementWrapper extends FormElement
     public function render(ElementInterface $element, $groupWrapper = null, $controlWrapper = null)
     {
         $labelHelper = $this->getLabelHelper();
-        $escapeHelper = $this->getEscapeHelper();
+        $escapeHelper = $this->getEscapeHtmlHelper();
         $elementHelper = $this->getElementHelper();
         $elementErrorHelper = $this->getElementErrorHelper();
         $descriptionHelper = $this->getDescriptionHelper();
