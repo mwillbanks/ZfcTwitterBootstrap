@@ -31,17 +31,17 @@ class FormRenderer extends AbstractHelper
     protected $formHelper;
 
     /**
-     * @var ZfcTwitterBootstrap\View\Helper\FormElement
+     * @var ZfcTwitterBootstrap\View\Helper\FormElementWrapper
      */
     protected $formElementHelper;
 
     /**
      * Set Form Element Helper
      *
-     * @param ZfcTwitterBootstrap\View\Helper\FormElement $helper
+     * @param ZfcTwitterBootstrap\View\Helper\FormElementWrapper $helper
      * @return ZfcTwitterBootstrap\View\Helper\FormRenderer
      */
-    public function setElementHelper(FormElement $helper)
+    public function setElementHelper(FormElementWrapper $helper)
     {
         $helper->setView($this->getView());
         $this->formElementHelper = $helper;
@@ -50,12 +50,12 @@ class FormRenderer extends AbstractHelper
     /**
      * Get Form Element Helper
      *
-     * @return ZfcTwitterBootstrap\View\Helper\FormElement
+     * @return ZfcTwitterBootstrap\View\Helper\FormElementWrapper
      */
     public function getElementHelper()
     {
         if (!$this->formElementHelper) {
-            $this->setElementHelper(new FormElement());
+            $this->setElementHelper(new FormElementWrapper());
         }
         return $this->formElementHelper;
     }
