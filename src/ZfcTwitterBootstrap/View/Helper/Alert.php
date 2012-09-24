@@ -35,7 +35,8 @@ FORMAT;
      * @param bool $isBlock
      * @return string
      */
-    public function info($alert, $isBlock = false) {
+    public function info($alert, $isBlock = false)
+    {
         return $this->render($alert, $isBlock, 'alert-info');
     }
 
@@ -46,7 +47,8 @@ FORMAT;
      * @param bool $isBlock
      * @return string
      */
-    public function error($alert, $isBlock = false) {
+    public function error($alert, $isBlock = false)
+    {
         return $this->render($alert, $isBlock, 'alert-error');
     }
 
@@ -57,7 +59,8 @@ FORMAT;
      * @param bool $isBlock
      * @return string
      */
-    public function success($alert, $isBlock = false) {
+    public function success($alert, $isBlock = false)
+    {
         return $this->render($alert, $isBlock, 'alert-success');
     }
 
@@ -68,7 +71,8 @@ FORMAT;
      * @param bool $isBlock
      * @return string
      */
-    public function warning($alert, $isBlock = false) {
+    public function warning($alert, $isBlock = false)
+    {
         return $this->render($alert, $isBlock);
     }
 
@@ -80,7 +84,8 @@ FORMAT;
      * @param string $class
      * @return string
      */
-    public function render($alert, $isBlock = false, $class = '') {
+    public function render($alert, $isBlock = false, $class = '')
+    {
         if ($isBlock) {
             $class .= ' alert-block';
         }
