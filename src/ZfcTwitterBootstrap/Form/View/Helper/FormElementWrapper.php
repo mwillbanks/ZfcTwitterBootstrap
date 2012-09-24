@@ -264,13 +264,17 @@ class FormElementWrapper extends FormElement
             $html .= $escapeHelper($label);
             $html .= $labelHelper->closeTag();
         }
+
+        $elementHelper->getView()->plugin('form_radio')->setLabelAttributes(array(
+            'class' => $element->getAttribute('type'),
+        ));
+
         $html .= sprintf($controlWrapper,
             $id,
             $elementHelper->render($element),
             $descriptionHelper->render($element),
             $elementErrorHelper->render($element)
         );
-
 
         $addtClass = ($element->getMessages()) ? ' error' : '';
         return sprintf($groupWrapper, $addtClass, $id, $html);
