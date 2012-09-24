@@ -1,6 +1,6 @@
 ZfcTwitterBootstrap
 ===================
-Version 0.1.0 Created by Mike Willbanks
+Version 0.2.0 Created by Mike Willbanks
 
 Naming
 ------
@@ -15,14 +15,14 @@ Introduction
 
 ZfcTwitterBootstrap is a module that attempts to handle Twitter Bootstrap
 integration for Zend Framework 2.  Out of the box this presently includes
-view helpers to render forms.  Overall this module will continue to grow
-out the view helpers to assist in generating many of the items that Twitter
-Bootstrap contains.
+view helpers to render forms, alerts, badges and labels.  Overall this module
+will continue to grow out the view helpers to assist in generating many of
+the items that Twitter Bootstrap contains.
 
 Requirements
 ------------
 
-* [Zend Framework 2](https://github.com/zendframework/zf2) (latest master)
+* [Zend Framework 2](https://github.com/zendframework/zf2) (2.*)
 
 Installation
 ------------
@@ -56,20 +56,26 @@ Features
   * FormRenderer
   * FormElement
   * FormDescription
+* View Helpers
+  * Alerts
+  * Badges
+  * Labels
 
 Roadmap
 -------
 
 * Zend\Form - Completed basic integration
-* Zend\Navigation - Not started
-* Alert Messages - Not started
+* Alert Messages - Completed basic view helper
+* Badges - Completed basic view helper
+* Labels - Completed basic view helper
+* Zend\Navigation - See current pull request.
 
-Usage
------
+Form Usage
+----------
 
     <?php
     // render a whole form
-    echo $this->formRenderer($this->form);
+    echo $this->ztbFormRenderer($this->form);
     ?>
 
 
@@ -78,6 +84,44 @@ Usage
     $form = $this->form;
     $form->prepare();
     echo $this->form()->openTag($form);
-    echo $this->formElementWrapper($this->form->get('element'));
+    echo $this->ztbFormElementWrapper($this->form->get('element'));
     echo $this->form()->closeTag();
     ?>>
+
+Alert Usage
+-----------
+
+    <?php
+    echo $this->ztbAlert('This is an alert');
+    // additional parameters: block level and class
+    echo $this->ztbAlert('This is an alert', true, 'warning');
+
+    // explicit usage
+    // explicit types: info, error, success, warning
+    echo $this->ztbAlert()->warning('This is an alert');
+    // explicit additional parameters: block level
+    echo $this->ztbAlert()->warning('This is an alert');
+
+Badge Usage
+-----------
+
+    <?php
+    echo $this->ztbBadge('This is a badge');
+    // additional parameters: class
+    echo $this->ztbBadge('This is a badge', 'info');
+
+    // explicit usage
+    // explicit types: info, important, inverse, success, warning
+    echo $this->ztbBadge()->info('This is a badge');
+
+Label Usage
+-----------
+
+    <?php
+    echo $this->ztbLabel('This is a label');
+    // additional parameters: class
+    echo $this->ztbLabel('This is a label', 'info');
+
+    // explicit usage
+    // explicit types: info, important, inverse, success, warning
+    echo $this->ztbLabel()->info('This is a label');
