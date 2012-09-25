@@ -250,11 +250,12 @@ class FormElementWrapper extends FormElement
         $descriptionHelper = $this->getDescriptionHelper();
         $groupWrapper = $groupWrapper ?: $this->groupWrapper;
         $controlWrapper = $controlWrapper ?: $this->controlWrapper;
+        $renderer = $elementHelper->getView();
 
         $id = $element->getAttribute('id') ?: $element->getAttribute('name');
         $html = "";
 
-        $label = $element->getAttribute('label');
+        $label = $element->getOption('label') ?: $element->getAttribute('label');
         if ($label) {
             $html .= $labelHelper->openTag(array(
                 'for' => $id,
@@ -264,13 +265,21 @@ class FormElementWrapper extends FormElement
             $html .= $escapeHelper($label);
             $html .= $labelHelper->closeTag();
         }
+
+        if (method_exists($renderer, 'plugin')) {
+            if ($element instanceof \Zend\Form\Element\Radio) {
+                $renderer->plugin('form_radio')->setLabelAttributes(array(
+                    'class' => 'radio',
+                ));
+            }
+        }
+
         $html .= sprintf($controlWrapper,
             $id,
             $elementHelper->render($element),
             $descriptionHelper->render($element),
             $elementErrorHelper->render($element)
         );
-
 
         $addtClass = ($element->getMessages()) ? ' error' : '';
         return sprintf($groupWrapper, $addtClass, $id, $html);
