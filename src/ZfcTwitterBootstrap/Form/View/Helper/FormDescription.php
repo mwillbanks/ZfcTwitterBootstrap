@@ -89,10 +89,10 @@ class FormDescription extends AbstractHelper
         $inlineWrapper = $inlineWrapper ?: $this->inlineWrapper;
 
         $html = '';
-        if ($inline = $element->getAttribute('help-inline')) {
+        if ($inline = $element->getOption('help-inline')) {
             $html .= sprintf($inlineWrapper, $inline);
         }
-        if ($block = $element->getAttribute('help-block')) {
+        if ($block = $element->getOption('help-block')) {
             $html .= sprintf($blockWrapper, $block);
         }
         return $html;
