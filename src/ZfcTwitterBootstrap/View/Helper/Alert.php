@@ -104,7 +104,7 @@ FORMAT;
     public function __invoke($alert = null, $isBlock = false, $class = '')
     {
         if ($alert) {
-            $this->render($alert, $isBlock, $class);
+            return $this->render($alert, $isBlock, $class);
         }
         return $this;
     }

@@ -106,7 +106,7 @@ FORMAT;
     public function __invoke($badge = null, $class = '')
     {
         if ($badge) {
-            $this->render($badge, $class);
+            return $this->render($badge, $class);
         }
         return $this;
     }

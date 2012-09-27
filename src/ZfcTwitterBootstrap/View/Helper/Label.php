@@ -106,7 +106,7 @@ FORMAT;
     public function __invoke($label = null, $class = '')
     {
         if ($label) {
-            $this->render($label, $class);
+            return $this->render($label, $class);
         }
         return $this;
     }
