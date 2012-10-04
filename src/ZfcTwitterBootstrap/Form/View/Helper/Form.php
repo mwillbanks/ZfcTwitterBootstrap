@@ -130,7 +130,7 @@ class Form extends AbstractHelper
      */
     public function renderFieldset(Fieldset $fieldset)
     {
-        $id = $fieldset->getId() ?: $fieldset->getName();
+        $id = $fieldset->getAttribute('id') ?: $fieldset->getName();
         return '<fieldset id="fieldset-' . $id . '">'
             . $this->render($fieldset)
             . '</fieldset>';
