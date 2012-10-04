@@ -11,7 +11,7 @@ namespace ZfcTwitterBootstrap\Form\View\Helper;
 
 use Traversable;
 use Zend\Form\ElementInterface;
-use Zend\Form\Form;
+use Zend\Form\Form as ZendForm;
 use Zend\Form\Fieldset;
 use Zend\Form\View\Helper\Form as FormHelper;
 use Zend\View\Helper\AbstractHelper;
@@ -23,7 +23,7 @@ use Zend\View\Helper\AbstractHelper;
  * @package ZfcTwitterBootstrap\View
  * @subpackage Helper
  */
-class FormRenderer extends AbstractHelper
+class Form extends AbstractHelper
 {
     /**
      * @var Zend\View\Helper\Form
@@ -38,10 +38,10 @@ class FormRenderer extends AbstractHelper
     /**
      * Set Form Element Helper
      *
-     * @param ZfcTwitterBootstrap\View\Helper\FormElementWrapper $helper
-     * @return ZfcTwitterBootstrap\View\Helper\FormRenderer
+     * @param ZfcTwitterBootstrap\View\Helper\FormElement $helper
+     * @return ZfcTwitterBootstrap\View\Helper\Form
      */
-    public function setElementHelper(FormElementWrapper $helper)
+    public function setElementHelper(FormElement $helper)
     {
         $helper->setView($this->getView());
         $this->formElementHelper = $helper;
@@ -50,12 +50,12 @@ class FormRenderer extends AbstractHelper
     /**
      * Get Form Element Helper
      *
-     * @return ZfcTwitterBootstrap\View\Helper\FormElementWrapper
+     * @return ZfcTwitterBootstrap\View\Helper\FormElement
      */
     public function getElementHelper()
     {
         if (!$this->formElementHelper) {
-            $this->setElementHelper(new FormElementWrapper());
+            $this->setElementHelper(new FormElement());
         }
         return $this->formElementHelper;
     }
@@ -64,7 +64,7 @@ class FormRenderer extends AbstractHelper
      * Set Form Helper
      *
      * @param Zend\Form\View\Helper\Form $form
-     * @return FormRenderer
+     * @return Form
      */
     public function setFormHelper(FormHelper $form)
     {
@@ -92,7 +92,7 @@ class FormRenderer extends AbstractHelper
      * @param Zend\Form\Form $form
      * @return void
      */
-    public function __invoke(Form $form)
+    public function __invoke(ZendForm $form)
     {
         $form->prepare();
         $html = $this->getFormHelper()->openTag($form);

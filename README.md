@@ -75,7 +75,7 @@ Form Usage
 
     <?php
     // render a whole form
-    echo $this->ztbFormRenderer($this->form);
+    echo $this->ztbForm($this->form);
     ?>
 
 
@@ -84,7 +84,7 @@ Form Usage
     $form = $this->form;
     $form->prepare();
     echo $this->form()->openTag($form);
-    echo $this->ztbFormElementWrapper($this->form->get('element'));
+    echo $this->ztbFormElement($this->form->get('element'));
     echo $this->form()->closeTag();
     ?>>
 

@@ -16,13 +16,19 @@ return array(
     ),
     'view_helpers' => array(
         'invokables' => array(
-            'formelementwrapper' => 'ZfcTwitterBootstrap\Form\View\Helper\FormElementWrapper',
-            'ztbformelementwrapper' => 'ZfcTwitterBootstrap\Form\View\Helper\FormElementWrapper',
-            'formrenderer' => 'ZfcTwitterBootstrap\Form\View\Helper\FormRenderer',
-            'ztbformrenderer' => 'ZfcTwitterBootstrap\Form\View\Helper\FormRenderer',
+            // @deprecated
+            'formelementwrapper' => 'ZfcTwitterBootstrap\Form\View\Helper\FormElement',
+            // @deprecated
+            'ztbformelementwrapper' => 'ZfcTwitterBootstrap\Form\View\Helper\FormElement',
+            // @deprecated
+            'formrenderer' => 'ZfcTwitterBootstrap\Form\View\Helper\Form',
+            // @deprecated
+            'ztbformrenderer' => 'ZfcTwitterBootstrap\Form\View\Helper\Form',
             'formdescription' => 'ZfcTwitterBootstrap\Form\View\Helper\FormDescription',
             'ztbformdescription' => 'ZfcTwitterBootstrap\Form\View\Helper\FormDescription',
             'ztbalert' => 'ZfcTwitterBootstrap\View\Helper\Alert',
+            'ztbform' => 'ZfcTwitterBootstrap\Form\View\Helper\Form',
+            'ztbformelement' => 'ZfcTwitterBootstrap\Form\View\Helper\FormElement',
             'ztblabel' => 'ZfcTwitterBootstrap\View\Helper\Label',
             'ztbbadge' => 'ZfcTwitterBootstrap\View\Helper\Badge',
         ),
