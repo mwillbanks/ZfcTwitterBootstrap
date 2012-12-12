@@ -8,7 +8,7 @@ return array(
                     'messageOpenFormat' => '<span%s>',
                     'messageSeparatorString' => '<br />',
                     'attributes' => array(
-                        'class' => 'inline-help',
+                        'class' => 'help-inline',
                     ),
                 ),
             ),
