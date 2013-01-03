@@ -261,6 +261,11 @@ class FormElement extends ZendFormElement
                 'for' => $id,
                 'class' => 'control-label',
             ));
+            if (null !== ($translator = $labelHelper->getTranslator())) {
+                $label = $translator->translate(
+                    $label, $labelHelper->getTranslatorTextDomain()
+                );
+            }
             // todo allow for not escaping the label
             $html .= $escapeHelper($label);
             $html .= $labelHelper->closeTag();
