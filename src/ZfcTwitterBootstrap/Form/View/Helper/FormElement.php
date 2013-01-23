@@ -106,7 +106,7 @@ class FormElement extends ZendFormElement
     public function getEscapeHtmlHelper()
     {
         if (!$this->escapeHelper) {
-            $this->setEscapeHtmlHelper($this->view->plugin('escapeHtml'));
+            $this->setEscapeHtmlHelper($this->view->plugin('escapehtml'));
         }
         return $this->escapeHelper;
     }
@@ -132,7 +132,7 @@ class FormElement extends ZendFormElement
     public function getElementHelper()
     {
         if (!$this->elementHelper) {
-            $this->setElementHelper($this->view->plugin('ztbFormElement'));
+            $this->setElementHelper($this->view->plugin('formelement'));
         }
         return $this->elementHelper;
     }
@@ -158,7 +158,7 @@ class FormElement extends ZendFormElement
     public function getElementErrorHelper()
     {
         if (!$this->elementErrorHelper) {
-            $this->setElementErrorHelper($this->view->plugin('formElementErrors'));
+            $this->setElementErrorHelper($this->view->plugin('formelementerrors'));
         }
         return $this->elementErrorHelper;
     }
@@ -184,7 +184,7 @@ class FormElement extends ZendFormElement
     public function getDescriptionHelper()
     {
         if (!$this->descriptionHelper) {
-            $this->setDescriptionHelper($this->view->plugin('ztbFormDescription'));
+            $this->setDescriptionHelper($this->view->plugin('ztbformdescription'));
         }
         return $this->descriptionHelper;
     }
