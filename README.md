@@ -1,6 +1,6 @@
 ZfcTwitterBootstrap
 ===================
-Version 0.2.0 Created by Mike Willbanks
+Version 0.2.1 Created by Mike Willbanks
 
 Naming
 ------
@@ -18,6 +18,11 @@ integration for Zend Framework 2.  Out of the box this presently includes
 view helpers to render forms, alerts, badges and labels.  Overall this module
 will continue to grow out the view helpers to assist in generating many of
 the items that Twitter Bootstrap contains.
+
+Change Log
+----------
+* Removed deprecated view helper aliases
+* Removed DI integration for a view helper factory
 
 Requirements
 ------------
