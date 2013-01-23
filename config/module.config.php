@@ -1,17 +1,14 @@
 <?php
 return array(
-    'di'              => array(
-        'instance' => array(
-            'Zend\Form\View\Helper\FormElementErrors' => array(
-                'parameters' => array(
-                    'messageCloseString' => '</span>',
-                    'messageOpenFormat' => '<span%s>',
-                    'messageSeparatorString' => '<br />',
-                    'attributes' => array(
-                        'class' => 'help-inline',
-                    ),
-                ),
-            ),
+    'service_manager' => array(
+        'factories' => array(
+            'Zend\Form\View\Helper\FormElementErrors' => function ($sm) {
+                $fee = new \Zend\Form\View\Helper\FormElementErrors();
+                $fee->setMessageCloseString('</li></ul>');
+                $fee->setMessageOpenFormat('<ul%s><li>');
+                $fee->setMessageSeparatorString('</li><li>');
+                return $fee;
+            },
         ),
     ),
     'view_helpers' => array(
