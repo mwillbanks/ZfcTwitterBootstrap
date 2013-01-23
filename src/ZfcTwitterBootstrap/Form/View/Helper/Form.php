@@ -81,7 +81,7 @@ class Form extends AbstractHelper
     public function getFormHelper()
     {
         if (!$this->formHelper) {
-            $this->setFormHelper($this->view->plugin('form'));
+            $this->setFormHelper($this->view->plugin('ztbForm'));
         }
         return $this->formHelper;
     }

@@ -132,7 +132,7 @@ class FormElement extends ZendFormElement
     public function getElementHelper()
     {
         if (!$this->elementHelper) {
-            $this->setElementHelper($this->view->plugin('formElement'));
+            $this->setElementHelper($this->view->plugin('ztbFormElement'));
         }
         return $this->elementHelper;
     }
@@ -184,7 +184,7 @@ class FormElement extends ZendFormElement
     public function getDescriptionHelper()
     {
         if (!$this->descriptionHelper) {
-            $this->setDescriptionHelper($this->view->plugin('formDescription'));
+            $this->setDescriptionHelper($this->view->plugin('ztbFormDescription'));
         }
         return $this->descriptionHelper;
     }
