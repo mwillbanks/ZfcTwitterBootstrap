@@ -25,7 +25,7 @@ class Alert extends AbstractHelper
      * @var string
      */
      protected $format = <<<FORMAT
-<div class="alert %s"><button type="button" class="close" data-dismiss="alert">x</button>%s</div>
+<div class="alert %s"><button type="button" class="close" data-dismiss="alert">&times;</button>%s</div>
 FORMAT;
 
     /**
