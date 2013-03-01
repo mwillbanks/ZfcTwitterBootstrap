@@ -31,27 +31,18 @@ Requirements
 
 Installation
 ------------
-Your composer.json should include the following. 
+Your composer.json should include the following:
 
-	{
-	"repositories": [
-	        {
-	            "type": "package",
-	            "package": {
-	                "version": "master",
-	                "name": "ZfcTwitterBootstrap",
-	                "source": {
-	                    "type": "git",
-	                    "url": "https://github.com/mwillbanks/ZfcTwitterBootstrap",
-	                    "reference": "master"
-	                } 
-	            }
-
-	        }
-	    ],
-		"require": {
-		        "ZfcTwitterBootstrap": "master"
-		    }
+    {
+        "repositories": [
+            {
+                "type": "vcs",
+                "url": "https://github.com/mwillbanks/ZfcTwitterBootstrap"
+            }
+        ],
+        "require": {
+            "mwillbanks/zfc-twitter-bootstrap": "dev-master"
+        }
     }
  
 
