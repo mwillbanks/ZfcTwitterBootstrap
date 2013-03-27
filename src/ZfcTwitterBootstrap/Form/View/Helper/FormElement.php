@@ -260,7 +260,7 @@ class FormElement extends ZendFormElement
             $label = $element->getOption('label') ?: $element->getAttribute('label');
         }
 
-        if ($label) {
+        if ($label && !$element->getOption('skipLabel')) {
             $html .= $labelHelper->openTag(array(
                 'for' => $id,
                 'class' => 'control-label',
@@ -270,8 +270,12 @@ class FormElement extends ZendFormElement
                     $label, $labelHelper->getTranslatorTextDomain()
                 );
             }
-            // todo allow for not escaping the label
-            $html .= $escapeHelper($label);
+
+            if ($element->getOption('skipLabelEscape')) {
+                $html .= $label;
+            } else {
+                $html .= $escapeHelper($label);
+            }
             $html .= $labelHelper->closeTag();
         }
 
