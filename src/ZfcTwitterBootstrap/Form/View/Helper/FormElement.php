@@ -255,7 +255,11 @@ class FormElement extends ZendFormElement
         $id = $element->getAttribute('id') ?: $element->getAttribute('name');
         $html = "";
 
-        $label = $element->getOption('label') ?: $element->getAttribute('label');
+        $label = $element->getLabel();
+        if (strlen($label) === 0) {
+            $label = $element->getOption('label') ?: $element->getAttribute('label');
+        }
+
         if ($label) {
             $html .= $labelHelper->openTag(array(
                 'for' => $id,
