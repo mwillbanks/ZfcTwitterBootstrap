@@ -34,14 +34,8 @@ Installation
 Your composer.json should include the following:
 
     {
-        "repositories": [
-            {
-                "type": "vcs",
-                "url": "https://github.com/mwillbanks/ZfcTwitterBootstrap"
-            }
-        ],
         "require": {
-            "mwillbanks/zfc-twitter-bootstrap": "dev-master"
+            "mwillbanks/zfc-twitter-bootstrap": "@dev"
         }
     }
  
