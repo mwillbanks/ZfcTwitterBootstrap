@@ -21,6 +21,7 @@ return array(
             'ztbformelement'     => 'ZfcTwitterBootstrap\Form\View\Helper\FormElement',
             'ztblabel'           => 'ZfcTwitterBootstrap\View\Helper\Label',
             'ztbbadge'           => 'ZfcTwitterBootstrap\View\Helper\Badge',
+        	'ztbflashmessenger'  => 'ZfcTwitterBootstrap\View\Helper\FlashMessenger',
         ),  
     ),  
 );
