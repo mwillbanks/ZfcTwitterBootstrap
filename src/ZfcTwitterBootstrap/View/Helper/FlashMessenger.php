@@ -18,7 +18,7 @@ use Zend\View\Helper\EscapeHtml;
 /**
  * View Helper
  */
-class FlashAlert extends AbstractHelper implements ServiceLocatorAwareInterface
+class FlashMessenger extends AbstractHelper implements ServiceLocatorAwareInterface
 {
 	/**
      * @var ServiceLocatorInterface
