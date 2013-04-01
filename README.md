@@ -49,6 +49,7 @@ Features
 * View Helpers
   * Alerts
   * Badges
+  * FlashMessages
   * Labels
 
 Roadmap
@@ -57,6 +58,7 @@ Roadmap
 * Zend\Form - Completed basic integration
 * Alert Messages - Completed basic view helper
 * Badges - Completed basic view helper
+* FlashMessages - Completed basic view helper
 * Labels - Completed basic view helper
 * Zend\Navigation - See current pull request.
 
@@ -76,7 +78,7 @@ Form Usage
     echo $this->form()->openTag($form);
     echo $this->ztbFormElement($this->form->get('element'));
     echo $this->form()->closeTag();
-    ?>>
+    ?>
 
 Alert Usage
 -----------
@@ -91,6 +93,7 @@ Alert Usage
     echo $this->ztbAlert()->warning('This is an alert');
     // explicit additional parameters: block level
     echo $this->ztbAlert()->warning('This is an alert');
+    ?>
 
 Badge Usage
 -----------
@@ -103,6 +106,39 @@ Badge Usage
     // explicit usage
     // explicit types: info, important, inverse, success, warning
     echo $this->ztbBadge()->info('This is a badge');
+    ?>
+    
+FlashMessenger Usage
+--------------------
+
+    <?php
+    // controller/action
+    // other types Info, Success, Error
+    $this->flashMessenger()->addMessage(
+        'User could not be saved due to a database error.'
+    );
+    
+    // other options
+    $this->flashMessenger()->addMessage(array(
+        'message'  => 'User could not be saved due to a database error.',
+        'title'    => 'Fatal Error!',
+        'titleTag' => 'h4',
+        'isBlock'  => true,
+    );
+    ?>
+    
+    <?php
+    // view script
+    // render all messages in all namespaces
+    echo $this->ztbFlashMessenger()->render();
+    
+    // explicit usage
+    // explicit types: default, info, success, error
+    echo $this->ztbFlashMessenger('error');
+    or
+    echo $this->ztbFlashMessenger()->render('info');
+    ?>
+    
 
 Label Usage
 -----------
