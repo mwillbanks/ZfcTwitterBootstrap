@@ -7,5 +7,6 @@ return array(
     'ZfcTwitterBootstrap\Form\View\Helper\FormRenderer'       => __DIR__ . '/src/ZfcTwitterBootstrap/Form/View/Helper/FormRenderer.php',
     'ZfcTwitterBootstrap\View\Helper\Alert'                   => __DIR__ . '/src/ZfcTwitterBootstrap/View/Helper/Alert.php',
     'ZfcTwitterBootstrap\View\Helper\Badge'                   => __DIR__ . '/src/ZfcTwitterBootstrap/View/Helper/Badge.php',
+    'ZfcTwitterBootstrap\View\Helper\FlashMessenger'          => __DIR__ . '/src/ZfcTwitterBootstrap/View/Helper/FlashMessenger.php',
     'ZfcTwitterBootstrap\View\Helper\Label'                   => __DIR__ . '/src/ZfcTwitterBootstrap/View/Helper/Label.php',
 );

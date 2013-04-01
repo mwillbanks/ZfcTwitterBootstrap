@@ -10,27 +10,32 @@
 namespace ZfcTwitterBootstrap\View\Helper;
 
 use Zend\Mvc\Controller\Plugin\FlashMessenger as PluginFlashMessenger;
-use Zend\ServiceManager\ServiceLocatorAwareInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\View\Helper\AbstractHelper;
-use Zend\View\Helper\EscapeHtml;
 
 /**
- * View Helper
+ * Helper to proxy the plugin flash messenger
+ * 
+ * @category   ZfcTwitterBootstrap
+ * @package    ZfcTwitterBootstrap_View
+ * @subpackage Helper
+ * @author     Shaun Freeman <shaun@shaunfreeman.co.uk>
  */
-class FlashMessenger extends AbstractHelper implements ServiceLocatorAwareInterface
+class FlashMessenger extends AbstractHelper
 {
-	/**
-     * @var ServiceLocatorInterface
-     */
-    protected $serviceLocator;
-
     /**
-     * @var string Templates for the open/close/seperator for message tags
+     * EOL character
      */
-    protected $messageCloseString     = '</div>';
-    protected $messageOpenString     = '<div%s><button type="button" class="close" data-dismiss="alert">&times;</button>';
-    protected $messageSeparatorString = '</div><div%s><button type="button" class="close" data-dismiss="alert">&times;</button>';
+    const EOL = PHP_EOL;
+    
+    /**
+     * @var string
+     */
+    protected $titleFormat = '<%s>%s </%s>';
+    
+    /**
+     * @var Alert
+     */
+    protected $alertHelper;
     
     /**
      * @var EscapeHtml
@@ -46,61 +51,33 @@ class FlashMessenger extends AbstractHelper implements ServiceLocatorAwareInterf
      * @var array Default attributes for the open format tag
      */
     protected $classMessages = array(
-        PluginFlashMessenger::NAMESPACE_INFO => 'alert alert-info',
-        PluginFlashMessenger::NAMESPACE_ERROR => 'alert alert-error',
-        PluginFlashMessenger::NAMESPACE_SUCCESS => 'alert alert-success',
-        PluginFlashMessenger::NAMESPACE_DEFAULT => 'alert',
+        PluginFlashMessenger::NAMESPACE_INFO    => 'info',
+        PluginFlashMessenger::NAMESPACE_ERROR   => 'error',
+        PluginFlashMessenger::NAMESPACE_SUCCESS => 'success',
+        PluginFlashMessenger::NAMESPACE_DEFAULT => 'warning',
+    );
+    
+    /**
+     * @var array An array of allowed title tags
+     */
+    protected $allowedTags = array(
+        'h1','h2','h3','h4','h5','h6','b','strong'  
     );
 
     /**
      * Returns the flash messenges as a string
      *
-     * @return string
+     * @return FlashMessenger|string
      */
-    public function __invoke()
+    public function __invoke($namespace = null)
     {
-    	$messagesToPrint = '';
-    	
-    	// get messages from each namespace.
-    	foreach ($this->classMessages as $namespace => $class) {
-    		$messages = $this->getMessagesFromNamespace($namespace);
-    		
-    		if (count($messages) > 0) {
-    			$messagesToPrint .= $this->render($messages, $namespace);
-    		}
-    	}
-    	
-    	return $messagesToPrint;
+        if (null === $namespace) {
+            return $this;
+        }
+        
+        return $this->render($namespace);
     }
     
-    /**
-     * Render Messages
-     *
-     * @param  string $namespace
-     * @param  array  $classes
-     * @return string
-     */
-    public function render(array $messages, $namespace)
-    {
-    	$escapeHtml = $this->getEscapeHtmlHelper();
-    	$messagesToPrint = array();
-    	
-    	foreach($messages as $message) {
-    		$messagesToPrint[] = $escapeHtml($message);
-    	}
-    	
-    	if (empty($messagesToPrint)) {
-    		return '';
-    	}
-    	
-    	// Generate markup
-    	$markup  = sprintf($this->messageOpenString, ' class="' . $this->classMessages[$namespace] . '"');
-    	$markup .= implode(sprintf($this->messageSeparatorString, ' class="' . $this->classMessages[$namespace] . '"'), $messagesToPrint);
-    	$markup .= $this->messageCloseString;
-    	
-    	return $markup;
-    }
-
     /**
      * Proxy the flash messenger plugin controller
      *
@@ -112,6 +89,132 @@ class FlashMessenger extends AbstractHelper implements ServiceLocatorAwareInterf
     {
         $flashMessenger = $this->getPluginFlashMessenger();
         return call_user_func_array(array($flashMessenger, $method), $argv);
+    }
+    
+    /**
+     * Render Messages
+     *
+     * @param  array  $namespace
+     * @return string
+     */
+    public function render($namespace = null)
+    {
+        $messagesToPrint = '';
+        
+        // get messages from each namespace.
+        if (null === $namespace) {
+            foreach ($this->classMessages as $namespace => $class) {
+                $messagesToPrint .= $this->fetchMessagesFromNamespace($namespace);
+            }
+        } else {
+            $messagesToPrint .= $this->fetchMessagesFromNamespace($namespace);
+        }
+        
+        return $messagesToPrint;
+    }
+    
+    /**
+     * Gets messages from flash messenger plugin namespace
+     * 
+     * @param string $namespace
+     * @return string
+     */
+    protected function fetchMessagesFromNamespace($namespace)
+    {
+        $this->setNamespace($namespace);
+        
+        if ($this->hasMessages()) {
+            $messages = $this->getMessagesFromNamespace($namespace);
+            // reset namespace
+            $this->setNamespace();
+            return $this->buildMessage($namespace, $messages);
+        }
+        
+        return '';
+    }
+    
+    /**
+     * Build the message
+     * 
+     * @param string $namespace
+     * @param array|string $messages
+     * @return string
+     */
+    protected function buildMessage($namespace, $messages)
+    {
+        $escapeHtml = $this->getEscapeHtmlHelper();
+        $messagesToPrint = array();
+        
+        foreach($messages as $message) {
+        
+            if (is_array($message)) {
+        
+                $isBlock = (isset($message['isBlock'])) ? true : false;
+        
+                if (isset($message['title'])) {
+                    $title = $escapeHtml($message['title']);
+                }
+        
+                if (isset($message['titleTag']) &&
+                in_array($message['titleTag'], $this->allowedTags)) {
+                    $titleTag = $escapeHtml($message['titleTag']);
+                } else {
+                    $titleTag = ($isBlock) ? 'h4' : 'strong';
+                }
+        
+                $messagesToPrint[] = $this->getAlert(
+                        $namespace,
+                        $escapeHtml($message['message']),
+                        $title,
+                        $titleTag,
+                        $isBlock
+                );
+            } else {
+                $messagesToPrint[] = $this->getAlert(
+                        $namespace,
+                        $escapeHtml($message)
+                );
+            }
+        }
+        
+        // Generate markup string
+        $markup = implode(self::EOL, $messagesToPrint);
+        
+        return $markup;
+    }
+    
+    /**
+     * Get the alert string
+     * 
+     * @param string $namespace
+     * @return string $alert
+     */
+    protected function getAlert($namespace, $message, $title = null, $titleTag = 'h4', $isBlock = false)
+    { 
+        $namespace = $this->classMessages[$namespace];
+        
+        $html = ($title) ? sprintf($this->titleFormat, $titleTag, $title, $titleTag) : '';
+        $html .= $message . self::EOL;
+        
+        $alert = $this->getAlertHelper()->$namespace($html, $isBlock);
+        
+        return $alert;
+    }
+    
+    /**
+     * Retrieve the alert helper
+     *
+     * @return Alert
+     */
+    protected function getAlertHelper()
+    {
+        if ($this->alertHelper) {
+            return $this->alertHelper;
+        }
+        
+        $this->alertHelper = $this->view->plugin('ztbalert');
+        
+        return $this->alertHelper;
     }
 
     /**
@@ -125,61 +228,24 @@ class FlashMessenger extends AbstractHelper implements ServiceLocatorAwareInterf
             return $this->escapeHtmlHelper;
         }
 
-        if (method_exists($this->view, 'plugin')) {
-            $this->escapeHtmlHelper = $this->view->plugin('escapehtml');
-        }
-
-        if (!$this->escapeHtmlHelper instanceof EscapeHtml) {
-            $this->escapeHtmlHelper = new EscapeHtml();
-        }
-
+        $this->escapeHtmlHelper = $this->view->plugin('escapehtml');
+        
         return $this->escapeHtmlHelper;
     }
 
     /**
-     * Get the flash messenger plugin
+     * Retrieve the flash messenger plugin
      *
      * @return PluginFlashMessenger
      */
     public function getPluginFlashMessenger()
     {
-        if (null === $this->pluginFlashMessenger) {
-            $this->setPluginFlashMessenger(new PluginFlashMessenger());
+        if ($this->pluginFlashMessenger) {
+            return $this->pluginFlashMessenger;
         }
+        
+        $this->pluginFlashMessenger = new PluginFlashMessenger();
 
         return $this->pluginFlashMessenger;
-    }
-
-    /**
-     * Set the flash messenger plugin
-     *
-     * @return FlashMessenger
-     */
-    public function setPluginFlashMessenger(PluginFlashMessenger $pluginFlashMessenger)
-    {
-        $this->pluginFlashMessenger = $pluginFlashMessenger;
-        return $this;
-    }
-
-    /**
-     * Set the service locator.
-     *
-     * @param  ServiceLocatorInterface $serviceLocator
-     * @return AbstractHelper
-     */
-    public function setServiceLocator(ServiceLocatorInterface $serviceLocator)
-    {
-        $this->serviceLocator = $serviceLocator;
-        return $this;
-    }
-
-    /**
-     * Get the service locator.
-     *
-     * @return ServiceLocatorInterface
-     */
-    public function getServiceLocator()
-    {
-        return $this->serviceLocator;
     }
 }
