@@ -51,6 +51,7 @@ Features
   * Badges
   * FlashMessages
   * Icons
+  * Images
   * Labels
 
 Roadmap
@@ -60,7 +61,11 @@ Roadmap
 * Alert Messages - Completed basic view helper
 * Badges - Completed basic view helper
 * FlashMessages - Completed basic view helper
+<<<<<<< HEAD
 * Icons - Completed basic view helper
+=======
+* Image - Completed basic view helper
+>>>>>>> origin/Image
 * Labels - Completed basic view helper
 * Zend\Navigation - See current pull request.
 
@@ -148,7 +153,7 @@ Icon Usage
     echo $this->ztbIcon('user');
     // additional parameters: color
     echo $this->ztbIcon('user', 'white');
-
+    
     // explicit usage
     echo $this->ztbIcon()->user();
     echo $this->ztbIcon()->user('white');
@@ -156,6 +161,17 @@ Icon Usage
     echo $this->ztbIcon()->plusSign();
     
 see [Twitter Botstrap Icons](http://twitter.github.com/bootstrap/base-css.html#icons) for available icons
+
+Image Usage
+-----------
+
+    <?php
+    echo $this->ztbImage('/path/to/img/img.png', 'circle');
+
+    // explicit usage
+    // explicit types: circle, rounded, polaroid
+    echo $this->ztbImage()->polaroid('/path/to/img/img.png');
+    ?>
     
 Label Usage
 -----------
@@ -168,3 +184,4 @@ Label Usage
     // explicit usage
     // explicit types: info, important, inverse, success, warning
     echo $this->ztbLabel()->info('This is a label');
+    ?>

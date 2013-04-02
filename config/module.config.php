@@ -23,6 +23,7 @@ return array(
             'ztbbadge'           => 'ZfcTwitterBootstrap\View\Helper\Badge',
         	'ztbflashmessenger'  => 'ZfcTwitterBootstrap\View\Helper\FlashMessenger',
             'ztbicon'            => 'ZfcTwitterBootstrap\View\Helper\Icon',
+            'ztbimage'           => 'ZfcTwitterBootstrap\View\Helper\Image',
         ),  
     ),  
 );
