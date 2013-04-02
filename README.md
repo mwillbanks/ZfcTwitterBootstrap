@@ -50,6 +50,7 @@ Features
   * Alerts
   * Badges
   * FlashMessages
+  * Icons
   * Labels
 
 Roadmap
@@ -59,6 +60,7 @@ Roadmap
 * Alert Messages - Completed basic view helper
 * Badges - Completed basic view helper
 * FlashMessages - Completed basic view helper
+* Icons - Completed basic view helper
 * Labels - Completed basic view helper
 * Zend\Navigation - See current pull request.
 
@@ -139,7 +141,22 @@ FlashMessenger Usage
     echo $this->ztbFlashMessenger()->render('info');
     ?>
     
+Icon Usage
+-----------
 
+    <?php
+    echo $this->ztbIcon('user');
+    // additional parameters: color
+    echo $this->ztbLabel('user', 'white');
+
+    // explicit usage
+    echo $this->ztbLabel()->user();
+    echo $this->ztbLabel()->user('white');
+    // icon names with dashes should be camel cased when using this method
+    echo $this->ztbIcon()->plusSign();
+    
+see [Twitter Botstrap Icons](http://twitter.github.com/bootstrap/base-css.html#icons) for available icons
+    
 Label Usage
 -----------
 

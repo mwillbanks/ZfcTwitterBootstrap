@@ -8,5 +8,6 @@ return array(
     'ZfcTwitterBootstrap\View\Helper\Alert'                   => __DIR__ . '/src/ZfcTwitterBootstrap/View/Helper/Alert.php',
     'ZfcTwitterBootstrap\View\Helper\Badge'                   => __DIR__ . '/src/ZfcTwitterBootstrap/View/Helper/Badge.php',
     'ZfcTwitterBootstrap\View\Helper\FlashMessenger'          => __DIR__ . '/src/ZfcTwitterBootstrap/View/Helper/FlashMessenger.php',
+    'ZfcTwitterBootstrap\View\Helper\Icon'                    => __DIR__ . '/src/ZfcTwitterBootstrap/View/Helper/Icon.php',
     'ZfcTwitterBootstrap\View\Helper\Label'                   => __DIR__ . '/src/ZfcTwitterBootstrap/View/Helper/Label.php',
 );
