@@ -19,11 +19,6 @@ view helpers to render forms, alerts, badges and labels.  Overall this module
 will continue to grow out the view helpers to assist in generating many of
 the items that Twitter Bootstrap contains.
 
-Change Log
-----------
-* Removed deprecated view helper aliases
-* Removed DI integration for a view helper factory
-
 Requirements
 ------------
 
@@ -51,6 +46,7 @@ Features
   * Badges
   * FlashMessages
   * Icons
+  * Images
   * Labels
 
 Roadmap
@@ -61,6 +57,7 @@ Roadmap
 * Badges - Completed basic view helper
 * FlashMessages - Completed basic view helper
 * Icons - Completed basic view helper
+* Image - Completed basic view helper
 * Labels - Completed basic view helper
 * Zend\Navigation - See current pull request.
 
@@ -137,7 +134,7 @@ FlashMessenger Usage
     // explicit usage
     // explicit types: default, info, success, error
     echo $this->ztbFlashMessenger('error');
-    or
+    // or
     echo $this->ztbFlashMessenger()->render('info');
     ?>
     
@@ -154,8 +151,20 @@ Icon Usage
     echo $this->ztbIcon()->user('white');
     // icon names with dashes should be camel cased when using this method
     echo $this->ztbIcon()->plusSign();
+    ?>
     
 see [Twitter Botstrap Icons](http://twitter.github.com/bootstrap/base-css.html#icons) for available icons
+
+Image Usage
+-----------
+
+    <?php
+    echo $this->ztbImage('/path/to/img/img.png', 'circle');
+
+    // explicit usage
+    // explicit types: circle, rounded, polaroid
+    echo $this->ztbImage()->polaroid('/path/to/img/img.png');
+    ?>
     
 Label Usage
 -----------
@@ -168,3 +177,4 @@ Label Usage
     // explicit usage
     // explicit types: info, important, inverse, success, warning
     echo $this->ztbLabel()->info('This is a label');
+    ?>
