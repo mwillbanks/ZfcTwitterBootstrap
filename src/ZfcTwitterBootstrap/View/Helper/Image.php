@@ -17,7 +17,6 @@ use Zend\Form\View\Helper\AbstractHelper;
  * @category   ZfcTwitterBootstrap
  * @package    ZfcTwitterBootstrap_View
  * @subpackage Helper
- * @author     Shaun Freeman <shaun@shaunfreeman.co.uk>
  */
 class Image extends AbstractHelper
 {

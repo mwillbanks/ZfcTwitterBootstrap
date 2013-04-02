@@ -149,7 +149,7 @@ Image Usage
 
     // explicit usage
     // explicit types: circle, rounded, polaroid
-    echo $this->ztbLabel()->polaroid('/path/to/img/img.png');
+    echo $this->ztbImage()->polaroid('/path/to/img/img.png');
     ?>
 
 Label Usage
