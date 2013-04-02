@@ -22,6 +22,7 @@ return array(
             'ztblabel'           => 'ZfcTwitterBootstrap\View\Helper\Label',
             'ztbbadge'           => 'ZfcTwitterBootstrap\View\Helper\Badge',
         	'ztbflashmessenger'  => 'ZfcTwitterBootstrap\View\Helper\FlashMessenger',
+            'ztbicon'            => 'ZfcTwitterBootstrap\View\Helper\Icon',
         ),  
     ),  
 );
