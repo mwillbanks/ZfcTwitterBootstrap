@@ -50,6 +50,7 @@ Features
   * Alerts
   * Badges
   * FlashMessages
+  * Images
   * Labels
 
 Roadmap
@@ -59,6 +60,7 @@ Roadmap
 * Alert Messages - Completed basic view helper
 * Badges - Completed basic view helper
 * FlashMessages - Completed basic view helper
+* Image - Completed basic view helper
 * Labels - Completed basic view helper
 * Zend\Navigation - See current pull request.
 
@@ -138,7 +140,17 @@ FlashMessenger Usage
     or
     echo $this->ztbFlashMessenger()->render('info');
     ?>
-    
+
+Image Usage
+-----------
+
+    <?php
+    echo $this->ztbImage('/path/to/img/img.png', 'circle');
+
+    // explicit usage
+    // explicit types: circle, rounded, polaroid
+    echo $this->ztbLabel()->polaroid('/path/to/img/img.png');
+    ?>
 
 Label Usage
 -----------
@@ -151,3 +163,4 @@ Label Usage
     // explicit usage
     // explicit types: info, important, inverse, success, warning
     echo $this->ztbLabel()->info('This is a label');
+    ?>
