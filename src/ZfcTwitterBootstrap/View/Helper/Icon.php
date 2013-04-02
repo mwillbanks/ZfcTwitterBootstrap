@@ -21,7 +21,6 @@ use Exception;
  * @category   ZfcTwitterBootstrap
  * @package    ZfcTwitterBootstrap_View
  * @subpackage Helper
- * @author     Shaun Freeman <shaun@shaunfreeman.co.uk>
  */
 class Icon extends AbstractHelper
 {

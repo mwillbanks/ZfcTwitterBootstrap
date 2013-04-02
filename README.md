@@ -147,11 +147,11 @@ Icon Usage
     <?php
     echo $this->ztbIcon('user');
     // additional parameters: color
-    echo $this->ztbLabel('user', 'white');
+    echo $this->ztbIcon('user', 'white');
 
     // explicit usage
-    echo $this->ztbLabel()->user();
-    echo $this->ztbLabel()->user('white');
+    echo $this->ztbIcon()->user();
+    echo $this->ztbIcon()->user('white');
     // icon names with dashes should be camel cased when using this method
     echo $this->ztbIcon()->plusSign();
     
