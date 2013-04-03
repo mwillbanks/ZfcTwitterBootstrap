@@ -24,6 +24,8 @@ return array(
         	'ztbflashmessenger'  => 'ZfcTwitterBootstrap\View\Helper\FlashMessenger',
             'ztbicon'            => 'ZfcTwitterBootstrap\View\Helper\Icon',
             'ztbimage'           => 'ZfcTwitterBootstrap\View\Helper\Image',
+            'ztbcloseicon'       => 'ZfcTwitterBootstrap\View\Helper\CloseIcon',
+            'ztbwell'            => 'ZfcTwitterBootstrap\View\Helper\Well',
         ),  
     ),  
 );

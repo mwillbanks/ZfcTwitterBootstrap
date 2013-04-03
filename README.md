@@ -49,24 +49,25 @@ Features
 * View Helpers
   * Alerts
   * Badges
+  * CloseIcons
   * FlashMessages
   * Icons
   * Images
   * Labels
+  * Wells
 
 Roadmap
 -------
 
 * Zend\Form - Completed basic integration
 * Alert Messages - Completed basic view helper
+* Close Icons - Completed basic view helper
 * Badges - Completed basic view helper
 * FlashMessages - Completed basic view helper
-<<<<<<< HEAD
 * Icons - Completed basic view helper
-=======
 * Image - Completed basic view helper
->>>>>>> origin/Image
 * Labels - Completed basic view helper
+* Wells - Completed basic viewhelper
 * Zend\Navigation - See current pull request.
 
 Form Usage
@@ -113,6 +114,15 @@ Badge Usage
     // explicit usage
     // explicit types: info, important, inverse, success, warning
     echo $this->ztbBadge()->info('This is a badge');
+    ?>
+    
+Close Icon Usage
+----------------
+
+    <?php
+    echo $this->ztbCloseIcon();
+    // or render an anchor
+    echo $this->ztbCloseIcon('a');
     ?>
     
 FlashMessenger Usage
@@ -184,4 +194,17 @@ Label Usage
     // explicit usage
     // explicit types: info, important, inverse, success, warning
     echo $this->ztbLabel()->info('This is a label');
+    ?>
+
+Well Usage
+-----------
+
+    <?php
+    echo $this->ztbWell('This is a well');
+    // additional parameters: class
+    echo $this->ztbWell('This is a large well', 'well-large');
+
+    // explicit usage
+    // explicit types: small, large
+    echo $this->ztbWell()->small('This is a small well');
     ?>
