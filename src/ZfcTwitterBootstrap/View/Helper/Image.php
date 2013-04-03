@@ -65,7 +65,7 @@ class Image extends AbstractHelper
      * @param string $class
      * @return string
      */
-    public function render($src, $class)
+    public function render($src, $class = '')
     {
         $basePath = $this->view->plugin('basePath');
         $class = trim($class);
