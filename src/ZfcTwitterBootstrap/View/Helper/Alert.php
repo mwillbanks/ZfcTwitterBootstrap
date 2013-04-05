@@ -1,10 +1,6 @@
 <?php
 /**
  * ZfcTwitterBootstrap
- *
- * @category   ZfcTwitterBootstrap
- * @package    ZfcTwitterBootstrap_View
- * @subpackage Helper
  */
 
 namespace ZfcTwitterBootstrap\View\Helper;
@@ -13,10 +9,6 @@ use Zend\Form\View\Helper\AbstractHelper;
 
 /**
  * Alert
- *
- * @category   ZfcTwitterBootstrap
- * @package    ZfcTwitterBootstrap_View
- * @subpackage Helper
  */
 class Alert extends AbstractHelper
 {
@@ -31,8 +23,8 @@ FORMAT;
     /**
      * Display an Informational Alert
      *
-     * @param string $alert
-     * @param bool $isBlock
+     * @param  string $alert
+     * @param  bool   $isBlock
      * @return string
      */
     public function info($alert, $isBlock = false)
@@ -43,8 +35,8 @@ FORMAT;
     /**
      * Display an Error Alert
      *
-     * @param string $alert
-     * @param bool $isBlock
+     * @param  string $alert
+     * @param  bool   $isBlock
      * @return string
      */
     public function error($alert, $isBlock = false)
@@ -55,8 +47,8 @@ FORMAT;
     /**
      * Display a Success Alert
      *
-     * @param string $alert
-     * @param bool $isBlock
+     * @param  string $alert
+     * @param  bool   $isBlock
      * @return string
      */
     public function success($alert, $isBlock = false)
@@ -66,9 +58,9 @@ FORMAT;
 
     /**
      * Display a Warning Alert
-     * 
-     * @param string $alert
-     * @param bool $isBlock
+     *
+     * @param  string $alert
+     * @param  bool   $isBlock
      * @return string
      */
     public function warning($alert, $isBlock = false)
@@ -79,9 +71,9 @@ FORMAT;
     /**
      * Render an Alert
      *
-     * @param string $alert
-     * @param bool $isBlock
-     * @param string $class
+     * @param  string $alert
+     * @param  bool   $isBlock
+     * @param  string $class
      * @return string
      */
     public function render($alert, $isBlock = false, $class = '')
@@ -90,22 +82,24 @@ FORMAT;
             $class .= ' alert-block';
         }
         $class = trim($class);
+
         return sprintf($this->format, $class, $alert);
     }
 
     /**
      * Invoke Alert
      *
-     * @param string $alert
-     * @param bool $isBlock
-     * @param string $class
-     * @return string|Alert
+     * @param  string      $alert
+     * @param  bool        $isBlock
+     * @param  string      $class
+     * @return string|self
      */
     public function __invoke($alert = null, $isBlock = false, $class = '')
     {
         if ($alert) {
             return $this->render($alert, $isBlock, $class);
         }
+
         return $this;
     }
 }

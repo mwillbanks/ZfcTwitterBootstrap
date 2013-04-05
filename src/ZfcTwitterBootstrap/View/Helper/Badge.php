@@ -1,10 +1,6 @@
 <?php
 /**
  * ZfcTwitterBootstrap
- *
- * @category   ZfcTwitterBootstrap
- * @package    ZfcTwitterBootstrap_View
- * @subpackage Helper
  */
 
 namespace ZfcTwitterBootstrap\View\Helper;
@@ -13,10 +9,6 @@ use Zend\Form\View\Helper\AbstractHelper;
 
 /**
  * Badge
- *
- * @category   ZfcTwitterBootstrap
- * @package    ZfcTwitterBootstrap_View
- * @subpackage Helper
  */
 class Badge extends AbstractHelper
 {
@@ -31,7 +23,7 @@ FORMAT;
     /**
      * Display an Informational Badge
      *
-     * @param string $badge
+     * @param  string $badge
      * @return string
      */
     public function info($badge)
@@ -42,7 +34,7 @@ FORMAT;
     /**
      * Display an Important Badge
      *
-     * @param string $badge
+     * @param  string $badge
      * @return string
      */
     public function important($badge)
@@ -53,7 +45,7 @@ FORMAT;
     /**
      * Display an Inverse Badge
      *
-     * @param string $badge
+     * @param  string $badge
      * @return string
      */
     public function inverse($badge)
@@ -64,7 +56,7 @@ FORMAT;
     /**
      * Display a Sucess Badge
      *
-     * @param string $badge
+     * @param  string $badge
      * @return string
      */
     public function success($badge)
@@ -75,7 +67,7 @@ FORMAT;
     /**
      * Display a Warning Badge
      *
-     * @param string $badge
+     * @param  string $badge
      * @return string
      */
     public function warning($badge)
@@ -86,28 +78,30 @@ FORMAT;
     /**
      * Render an Badge
      *
-     * @param string $badge
-     * @param string $class
+     * @param  string $badge
+     * @param  string $class
      * @return string
      */
     public function render($badge, $class = '')
     {
         $class = trim($class);
+
         return sprintf($this->format, $class, $badge);
     }
 
     /**
      * Invoke Badge
      *
-     * @param string $badge
-     * @param string $class
-     * @return string|Badge
+     * @param  string      $badge
+     * @param  string      $class
+     * @return string|self
      */
     public function __invoke($badge = null, $class = '')
     {
         if ($badge) {
             return $this->render($badge, $class);
         }
+
         return $this;
     }
 }

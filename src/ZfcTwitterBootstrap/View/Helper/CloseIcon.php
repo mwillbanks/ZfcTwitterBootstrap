@@ -1,10 +1,6 @@
 <?php
 /**
  * ZfcTwitterBootstrap
- *
- * @category   ZfcTwitterBootstrap
- * @package    ZfcTwitterBootstrap_View
- * @subpackage Helper
  */
 
 namespace ZfcTwitterBootstrap\View\Helper;
@@ -13,29 +9,29 @@ use Zend\Form\View\Helper\AbstractHelper;
 
 /**
  * Close Icon
- *
- * @category   ZfcTwitterBootstrap
- * @package    ZfcTwitterBootstrap_View
- * @subpackage Helper
  */
 class CloseIcon extends AbstractHelper
-{   
+{
+
+    const TYPE_BUTTON = 'button';
+    const TYPE_ANCOR  = 'a';
+
     /**
      * Invoke CloseIcon
      *
-     * @param string $type
+     * @param  string $type
      * @return string
      */
-    public function __invoke($type = 'button')
+    public function __invoke($type = self::TYPE_BUTTON)
     {
-        if ('button' === $type) {
+        if ('button' === self::TYPE_BUTTON) {
             return '<button class="close">&times;</button>';
         }
-        
-        if ('a' === $type) {
+
+        if ('a' === self::TYPE_ANCOR) {
             return '<a class="close" href="#">&times;</a>';
         }
-        
+
         return '';
     }
 }
