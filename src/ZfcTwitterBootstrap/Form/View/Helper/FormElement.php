@@ -288,7 +288,7 @@ class FormElement extends ZendFormElement
                 $renderer->plugin('form_radio')->setLabelAttributes(array(
                     'class' => 'radio',
                 ));
-            } elseif ($elemnt instanceof \Zend\Form\Element\MultiCheckbox) {
+            } elseif ($element instanceof \Zend\Form\Element\MultiCheckbox) {
                 $renderer->plugin('form_multi_checkbox')->setLabelAttributes(array(
                     'class' => 'checkbox',
                 ));
