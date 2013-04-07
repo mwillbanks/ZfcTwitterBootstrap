@@ -1,10 +1,6 @@
 <?php
 /**
  * ZfcTwitterBootstrap
- *
- * @category   ZfcTwitterBootstrap
- * @package    ZfcTwitterBootstrap_Form
- * @subpackage View
  */
 
 namespace ZfcTwitterBootstrap\Form\View\Helper;
@@ -14,10 +10,6 @@ use Zend\Form\View\Helper\AbstractHelper;
 
 /**
  * Form Description
- *
- * @category   ZfcTwitterBootstrap
- * @package    ZfcTwitterBootstrap_Form
- * @subpackage View
  */
 class FormDescription extends AbstractHelper
 {
@@ -33,13 +25,14 @@ class FormDescription extends AbstractHelper
 
     /**
      * Set Block Wrapper
-     * 
-     * @param string $blockWrapper
-     * @return FormDescription
+     *
+     * @param  string $blockWrapper
+     * @return self
      */
     public function setBlockWrapper($blockWrapper)
     {
         $this->blockWrapper = (string) $blockWrapper;
+
         return $this;
     }
 
@@ -56,12 +49,13 @@ class FormDescription extends AbstractHelper
     /**
      * Set Inline wrapper
      *
-     * @param string $inlineWrapper
-     * @return FormDescription
+     * @param  string $inlineWrapper
+     * @return self
      */
     public function setInlineWrapper($inlineWrapper)
     {
         $this->inlineWrapper = (string) $inlineWrapper;
+
         return $this;
     }
 
@@ -78,9 +72,9 @@ class FormDescription extends AbstractHelper
     /**
      * Render
      *
-     * @param ElementInterface $elmenet
-     * @param string $blockWrapper
-     * @param string $inlineWrapper
+     * @param  \Zend\Form\ElementInterface $element
+     * @param  string                      $blockWrapper
+     * @param  string                      $inlineWrapper
      * @return string
      */
     public function render(ElementInterface $element, $blockWrapper = null, $inlineWrapper = null)
@@ -95,22 +89,24 @@ class FormDescription extends AbstractHelper
         if ($block = $element->getOption('help-block')) {
             $html .= sprintf($blockWrapper, $block);
         }
+
         return $html;
     }
 
     /**
      * Magical Invoke Method
      *
-     * @param ElementInterface $elemnet
-     * @param string $blockWrapper
-     * @param string $invokeWrapper
-     * @return string|FormDescription
+     * @param  \Zend\Form\ElementInterface $elemnet
+     * @param  string                      $blockWrapper
+     * @param  string                      $invokeWrapper
+     * @return string|self
      */
     public function __invoke(ElementInterface $element = null, $blockWrapper = null, $inlineWrapper = null)
     {
         if ($element) {
             return $this->render($element, $blockWrapper, $inlineWrapper);
         }
+
         return $this;
     }
 }

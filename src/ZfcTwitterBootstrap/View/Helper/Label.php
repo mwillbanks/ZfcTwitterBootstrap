@@ -1,10 +1,6 @@
 <?php
 /**
  * ZfcTwitterBootstrap
- *
- * @category   ZfcTwitterBootstrap
- * @package    ZfcTwitterBootstrap_View
- * @subpackage Helper
  */
 
 namespace ZfcTwitterBootstrap\View\Helper;
@@ -13,10 +9,6 @@ use Zend\Form\View\Helper\AbstractHelper;
 
 /**
  * Label
- *
- * @category   ZfcTwitterBootstrap
- * @package    ZfcTwitterBootstrap_View
- * @subpackage Helper
  */
 class Label extends AbstractHelper
 {
@@ -31,7 +23,7 @@ FORMAT;
     /**
      * Display an Informational Label
      *
-     * @param string $label
+     * @param  string $label
      * @return string
      */
     public function info($label)
@@ -42,7 +34,7 @@ FORMAT;
     /**
      * Display an Important Label
      *
-     * @param string $label
+     * @param  string $label
      * @return string
      */
     public function important($label)
@@ -53,7 +45,7 @@ FORMAT;
     /**
      * Display an Inverse Label
      *
-     * @param string $label
+     * @param  string $label
      * @return string
      */
     public function inverse($label)
@@ -64,7 +56,7 @@ FORMAT;
     /**
      * Display a Sucess Label
      *
-     * @param string $label
+     * @param  string $label
      * @return string
      */
     public function success($label)
@@ -75,7 +67,7 @@ FORMAT;
     /**
      * Display a Warning Label
      *
-     * @param string $label
+     * @param  string $label
      * @return string
      */
     public function warning($label)
@@ -86,28 +78,30 @@ FORMAT;
     /**
      * Render an Label
      *
-     * @param string $label
-     * @param string $class
+     * @param  string $label
+     * @param  string $class
      * @return string
      */
     public function render($label, $class = '')
     {
         $class = trim($class);
+
         return sprintf($this->format, $class, $label);
     }
 
     /**
      * Invoke Label
      *
-     * @param string $label
-     * @param string $class
-     * @return string|Label
+     * @param  string      $label
+     * @param  string      $class
+     * @return string|self
      */
     public function __invoke($label = null, $class = '')
     {
         if ($label) {
             return $this->render($label, $class);
         }
+
         return $this;
     }
 }

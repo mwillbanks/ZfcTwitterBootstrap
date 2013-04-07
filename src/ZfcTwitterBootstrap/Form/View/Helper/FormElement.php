@@ -1,10 +1,6 @@
 <?php
 /**
  * ZfcTwitterBootstrap
- *
- * @category ZfcTwitterBootstrap
- * @package ZfcTwitterBootstrap\View
- * @subpackage Helper
  */
 
 namespace ZfcTwitterBootstrap\Form\View\Helper;
@@ -17,35 +13,31 @@ use Zend\View\Helper\EscapeHtml;
 
 /**
  * Form Element
- *
- * @category ZfcTwitterBootstrap
- * @package ZfcTwitterBootstrap\View
- * @subpackage Helper
  */
 class FormElement extends ZendFormElement
 {
     /**
-     * @var Zend\Form\View\Helper\FormLabel
+     * @var \Zend\Form\View\Helper\FormLabel
      */
     protected $labelHelper;
 
     /**
-     * @var Zend\Form\View\Helper\ZendFormElement
+     * @var \Zend\Form\View\Helper\ZendFormElement
      */
     protected $elementHelper;
 
     /**
-     * @var Zend\View\Helper\EscapeHtml
+     * @var \Zend\View\Helper\EscapeHtml
      */
     protected $escapeHelper;
 
     /**
-     * @var Zend\Form\View\Helper\FormElementErrors
+     * @var \Zend\Form\View\Helper\FormElementErrors
      */
     protected $elementErrorHelper;
 
     /**
-     * @var ZfcTwitterBootstrap\Form\View\Helper\FormDescription
+     * @var FormDescription
      */
     protected $descriptionHelper;
 
@@ -62,142 +54,153 @@ class FormElement extends ZendFormElement
     /**
      * Set Label Helper
      *
-     * @param Zend\Form\View\Helper\FormLabel $labelHelper
-     * @return FormElement
+     * @param  Zend\Form\View\Helper\FormLabel $labelHelper
+     * @return self
      */
     public function setLabelHelper(FormLabel $labelHelper)
     {
         $labelHelper->setView($this->getView());
         $this->labelHelper = $labelHelper;
+
         return $this;
     }
 
     /**
      * Get Label Helper
      *
-     * @return Zend\Form\View\Helper\FormLabel
+     * @return \Zend\Form\View\Helper\FormLabel
      */
     public function getLabelHelper()
     {
         if (!$this->labelHelper) {
             $this->setLabelHelper($this->view->plugin('formlabel'));
         }
+
         return $this->labelHelper;
     }
 
     /**
      * Set EscapeHtml Helper
-     * 
-     * @param Zend\View\Helper\EscapeHtml $escapeHelper
-     * @return FormElement
+     *
+     * @param  \Zend\View\Helper\EscapeHtml $escapeHelper
+     * @return self
      */
     public function setEscapeHtmlHelper(EscapeHtml $escapeHelper)
     {
         $escapeHelper->setView($this->getView());
         $this->escapeHelper = $escapeHelper;
+
         return $this;
     }
 
     /**
      * Get EscapeHtml Helper
      *
-     * @return Zend\View\Helper\EscapeHtml
+     * @return \Zend\View\Helper\EscapeHtml
      */
     public function getEscapeHtmlHelper()
     {
         if (!$this->escapeHelper) {
             $this->setEscapeHtmlHelper($this->view->plugin('escapehtml'));
         }
+
         return $this->escapeHelper;
     }
 
     /**
      * Set Element Helper
      *
-     * @param Zend\Form\View\Helper\FormElement $elementHelper
-     * @return FormElement
+     * @param  \Zend\Form\View\Helper\FormElement $elementHelper
+     * @return self
      */
     public function setElementHelper(ZendFormElement $elementHelper)
     {
         $elementHelper->setView($this->getView());
         $this->elementHelper = $elementHelper;
+
         return $this;
     }
 
     /**
      * Get Element Helper
      *
-     * @return Zend\Form\View\Helper\FormElement
+     * @return \Zend\Form\View\Helper\FormElement
      */
     public function getElementHelper()
     {
         if (!$this->elementHelper) {
             $this->setElementHelper($this->view->plugin('formelement'));
         }
+
         return $this->elementHelper;
     }
 
     /**
      * Set Element Error Helper
      *
-     * @param Zend\Form\View\Helper\FormElementErrors $errorHelper
-     * @return FormElement
+     * @param  \Zend\Form\View\Helper\FormElementErrors $errorHelper
+     * @return self
      */
     public function setElementErrorHelper(FormElementErrors $errorHelper)
     {
         $errorHelper->setView($this->getView());
         $this->elementErrorHelper = $errorHelper;
+
         return $this;
     }
 
     /**
      * Get Element Error Helper
      *
-     * @return Zend\Form\View\Helper\FormElementErrors
+     * @return \Zend\Form\View\Helper\FormElementErrors
      */
     public function getElementErrorHelper()
     {
         if (!$this->elementErrorHelper) {
             $this->setElementErrorHelper($this->view->plugin('formelementerrors'));
         }
+
         return $this->elementErrorHelper;
     }
 
     /**
      * Set Description Helper
      *
-     * @param ZfcTwitterBootstrap\Form\View\Helper\FormDescription
-     * @return FormElement
+     * @param FormDescription
+     * @return self
      */
     public function setDescriptionHelper(FormDescription $descriptionHelper)
     {
         $descriptionHelper->setView($this->getView());
         $this->descriptionHelper = $descriptionHelper;
+
         return $this;
     }
 
     /**
      * Get Description Helper
      *
-     * @return ZfcTwitterBootstrap\Form\View\Helper\FormDescription
+     * @return FormDescription
      */
     public function getDescriptionHelper()
     {
         if (!$this->descriptionHelper) {
             $this->setDescriptionHelper($this->view->plugin('ztbformdescription'));
         }
+
         return $this->descriptionHelper;
     }
 
     /**
      * Set Group Wrapper
      *
-     * @param string $groupWrapper
-     * @return FormElement
+     * @param  string $groupWrapper
+     * @return self
      */
     public function setGroupWrapper($groupWrapper)
     {
         $this->groupWrapper = (string) $groupWrapper;
+
         return $this;
     }
 
@@ -214,12 +217,13 @@ class FormElement extends ZendFormElement
     /**
      * Set Control Wrapper
      *
-     * @param string $controlWrapper;
-     * @return FormElement
+     * @param  string $controlWrapper;
+     * @return self
      */
     public function setControlWrapper($controlWrapper)
     {
         $this->controlWrapper = (string) $controlWrapper;
+
         return $this;
     }
 
@@ -236,9 +240,9 @@ class FormElement extends ZendFormElement
     /**
      * Render
      *
-     * @param Zend\Form\ElementInterface $element
-     * @param string $groupWrapper
-     * @param string $controlWrapper
+     * @param  \Zend\Form\ElementInterface $element
+     * @param  string                      $groupWrapper
+     * @param  string                      $controlWrapper
      * @return string
      */
     public function render(ElementInterface $element, $groupWrapper = null, $controlWrapper = null)
@@ -284,6 +288,10 @@ class FormElement extends ZendFormElement
                 $renderer->plugin('form_radio')->setLabelAttributes(array(
                     'class' => 'radio',
                 ));
+            } elseif ($elemnt instanceof \Zend\Form\Element\MultiCheckbox) {
+                $renderer->plugin('form_multi_checkbox')->setLabelAttributes(array(
+                    'class' => 'checkbox',
+                ));
             }
         }
 
@@ -295,22 +303,24 @@ class FormElement extends ZendFormElement
         );
 
         $addtClass = ($element->getMessages()) ? ' error' : '';
+
         return sprintf($groupWrapper, $addtClass, $id, $html);
     }
 
     /**
      * Magical Invoke
      *
-     * @param Zend\Form\ElementInterface $element
-     * @param string $groupWrapper
-     * @param string $controlWrapper
-     * @return string|FormElement
+     * @param  \Zend\Form\ElementInterface $element
+     * @param  string                      $groupWrapper
+     * @param  string                      $controlWrapper
+     * @return string|self
      */
     public function __invoke(ElementInterface $element = null, $groupWrapper = null, $controlWrapper = null)
     {
         if ($element) {
             return $this->render($element, $groupWrapper, $controlWrapper);
         }
+
         return $this;
     }
 }

@@ -1,9 +1,6 @@
 <?php
 /**
- * Twitter Bootstrap Module
- *
- * @category ZfcTwitterBootstrap 
- * @package  Module
+ * ZfcTwitterBootstrap
  */
 
 namespace ZfcTwitterBootstrap;
@@ -12,9 +9,6 @@ use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 
 /**
  * Module Setup
- *
- * @category ZfcTwitterBootstrap
- * @package  Module
  */
 class Module implements AutoloaderProviderInterface
 {    
@@ -43,6 +37,29 @@ class Module implements AutoloaderProviderInterface
                 'namespaces' => array(
                     __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
                 ),
+            ),
+        );
+    }
+
+    /**
+     * Get Service Configuratio
+     *
+     * @return array
+     */
+    public function getServiceConfig()
+    {
+        return array(
+            'factories' => array(
+                'formElementErrors' => function ($sm) {
+                    $fee = new \Zend\Form\View\Helper\FormElementErrors();
+                    $fee->setMessageCloseString('</li></ul>');
+                    $fee->setMessageOpenFormat('<ul%s><li>');
+                    $fee->setMessageSeparatorString('</li><li>');
+                    $fee->setAttributes(array(
+                        'class' => 'help-inline',
+                    )); 
+                    return $fee;
+                },
             ),
         );
     }
