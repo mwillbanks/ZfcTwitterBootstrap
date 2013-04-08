@@ -1,5 +1,6 @@
 <?php
 return array(
+    'view_helpers' => array(
         'invokables' => array(
             'ztbalert'           => 'ZfcTwitterBootstrap\View\Helper\Alert',
             'ztbbadge'           => 'ZfcTwitterBootstrap\View\Helper\Badge',
