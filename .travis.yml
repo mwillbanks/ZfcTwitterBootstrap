@@ -11,4 +11,4 @@ matrix:
     - php: 5.5
 
 before_script:
-  - php composer.phar install --dev
+  - composer install --dev
