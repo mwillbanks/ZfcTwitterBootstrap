@@ -11,7 +11,7 @@ use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
  * Module Setup
  */
 class Module implements AutoloaderProviderInterface
-{    
+{
     /**
      * Get Config
      *
@@ -57,7 +57,8 @@ class Module implements AutoloaderProviderInterface
                     $fee->setMessageSeparatorString('</li><li>');
                     $fee->setAttributes(array(
                         'class' => 'help-inline',
-                    )); 
+                    ));
+
                     return $fee;
                 },
             ),
