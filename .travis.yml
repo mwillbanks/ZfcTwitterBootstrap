@@ -12,3 +12,7 @@ matrix:
 
 before_script:
   - composer install --dev
+  - cp tests/TestConfiguration.php.dist tests/TestConfiguration.php
+
+script:
+  - phpunit -c tests/phpunit.xml
