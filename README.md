@@ -33,7 +33,18 @@ Your composer.json should include the following:
             "mwillbanks/zfc-twitter-bootstrap": "@dev"
         }
     }
- 
+
+Enable the module in your `application.config.php` file:
+
+    <?php
+    return array(
+        'modules' => array(
+            // ...
+            'ZfcTwitterBootstrap',
+        ),
+        // ...
+    );
+    
 
 Features
 --------
