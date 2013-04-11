@@ -4947,7 +4947,6 @@ wysihtml5.dom.parse = (function() {
         checkAttributes     = rule.check_attributes,      // check/convert values of attributes
         allowAttributes     = rule.allow_attributes,      // copy attributes from old to new node
         allowedClasses      = currentRules.classes,
-        allowEveryClasses 	= currentRules.allowAllClasses,
         i                   = 0,
         classes             = [],
         newClasses          = [],
@@ -5017,7 +5016,7 @@ wysihtml5.dom.parse = (function() {
     classesLength = classes.length;
     for (i = 0; i<classesLength; i++) {
       currentClass = classes[i];
-      if (allowedClasses[currentClass] || allowEveryClasses) {
+      if (allowedClasses[currentClass] || allowedClasses['*']) {
         newClasses.push(currentClass);
       }
     }
@@ -7601,12 +7600,12 @@ wysihtml5.commands.redo = {
   var REG_EXP = /[0-9a-z\-]+/g;
   
   wysihtml5.commands.styleClass = {
-    exec: function(composer, command, style) {
-      return wysihtml5.commands.formatInline.exec(composer, command, "span", style, REG_EXP);
+    exec: function(composer, command, color) {
+      return wysihtml5.commands.formatInline.exec(composer, command, "span", color);
     },
 
-    state: function(composer, command, style) {
-      return wysihtml5.commands.formatInline.state(composer, command, "span", style, REG_EXP);
+    state: function(composer, command, color) {
+      return wysihtml5.commands.formatInline.state(composer, command, "span", color);
     }
   };
 })(wysihtml5);wysihtml5.commands.underline = {

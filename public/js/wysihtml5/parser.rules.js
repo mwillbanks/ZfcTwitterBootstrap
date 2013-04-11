@@ -3,7 +3,6 @@ var parserRules = {
 	classes: {
         "*": 1
     },
-    allowAllClasses: 1,
     tags: {
         "b":  {},
         "i":  {},
