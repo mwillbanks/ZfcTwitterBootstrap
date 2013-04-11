@@ -52,8 +52,7 @@
             });
             
             toolbar.find("a[data-wysihtml5-command='styleClass']").click(function(e) {
-                var target = e.target || e.srcElement;
-                var el = $(target).first();
+                var el = $(e.currentTarget).find('span');
                 self.toolbar.find('.current-emphasis').text(el.html());
             });
 
