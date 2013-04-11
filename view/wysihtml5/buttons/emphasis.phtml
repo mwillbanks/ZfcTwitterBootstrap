@@ -1,0 +1,60 @@
+<li>
+    <div class="btn-group">
+        <a class="btn" data-wysihtml5-command="bold" title="<?php echo $this->ztbTranslate('Bold'); ?> CTRL+B">
+            <i class="icon-bold"></i>
+        </a>
+        <a class="btn" data-wysihtml5-command="italic" title="<?php echo $this->ztbTranslate('Italic'); ?> CTRL+I">
+            <i class="icon-italic"></i>
+        </a>
+        <a class="btn" data-wysihtml5-command="underline" title="<?php echo $this->ztbTranslate('Underline'); ?> CTRL+U">
+            <b>U</b>
+        </a>
+    </div>
+</li>
+
+<li class="dropdown">
+    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+        <span class="current-emphasis">
+            <?php echo $this->ztbTranslate('Emphasis Color'); ?>
+        </span>&nbsp;
+        <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+        <li>
+            <a data-wysihtml5-command="styleClass" data-wysihtml5-command-value="muted">
+                <span class="muted">
+                    <?php echo $this->ztbTranslate('Muted'); ?>
+                </span>
+            </a>
+        </li>
+        <li>
+            <a data-wysihtml5-command="styleClass" data-wysihtml5-command-value="text-warning">
+                <span class="text-warning">
+                    <?php echo $this->ztbTranslate('Warning'); ?>
+                </span>
+            </a>
+        </li>
+        <li>
+            <a data-wysihtml5-command="styleClass" data-wysihtml5-command-value="text-error">
+                <span class="text-error">
+                    <?php echo $this->ztbTranslate('Error'); ?>
+                </span>
+            </a>
+        </li>
+        <li>
+            <a data-wysihtml5-command="styleClass" data-wysihtml5-command-value="text-info">
+                <span class="text-info">
+                    <?php echo $this->ztbTranslate('Info'); ?>
+                </span>
+            </a>
+        </li>
+        <li>
+            <a data-wysihtml5-command="styleClass" data-wysihtml5-command-value="text-success">
+                <span class="text-success">
+                    <?php echo $this->ztbTranslate('Success'); ?>
+                </span>
+            </a>
+        </li>
+    </ul>
+</li>
+

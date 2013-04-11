@@ -41,6 +41,7 @@ Features
   * FormRenderer
   * FormElement
   * FormDescription
+  * FromWysihtml5 (wysihtml5 text editor)
 * View Helpers
   * Alerts
   * Badges
@@ -63,6 +64,7 @@ Roadmap
 * Image - Completed basic view helper
 * Labels - Completed basic view helper
 * Wells - Completed basic viewhelper
+* WYSIHTML5 - Completed basic integration with translation helper
 * Zend\Navigation - See current pull request.
 
 Form Usage
@@ -81,6 +83,37 @@ Form Usage
     echo $this->form()->openTag($form);
     echo $this->ztbFormElement($this->form->get('element'));
     echo $this->form()->closeTag();
+    ?>
+    
+Text Editor Usage
+-----------------
+
+    <?php
+    // The textarea form element needs an id attribute set.
+    // render the form as above element by element example and include
+    // addition options include an array with keys for toolbar buttons
+    // and stylesheets to include.
+    // If no options are given then the default will be used.
+    // Example: (using default options)
+    echo $this->ztbFormWysihtml5($this->form->get(
+        'elementTextarea',
+        array(
+            'toolbar' => array(
+                'font-styles', // Font styling, e.g. h1, h2, etc.
+                'edit', // undo and redo.
+                'justify', // left, centre, right
+                'emphasis', // Italics, bold, etc.
+                'lists', // (Un)ordered lists, e.g. Bullets, Numbers.
+                'html', // Button which allows you to edit the generated HTML.
+                'link', //Button to insert a link.
+                'image', // insert an image.
+            ),
+            'stylesheets' => array(
+                '/css/bootstrap.min.css', // path to your bootstrap css
+                '/css/style.css', // path to your site css
+            ),
+        )
+    ));
     ?>
 
 Alert Usage
