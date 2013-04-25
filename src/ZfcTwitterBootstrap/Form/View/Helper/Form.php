@@ -128,8 +128,14 @@ class Form extends AbstractHelper
     public function renderFieldset(Fieldset $fieldset)
     {
         $id = $fieldset->getAttribute('id') ?: $fieldset->getName();
+        $class = $fieldset->getAttribute('class');
+        $label = $fieldset->getLabel();
+        if (!empty($label)) {
+            $label = "<legend>$label</legend>";
+        }
 
-        return '<fieldset id="fieldset-' . $id . '">'
+        return '<fieldset id="fieldset-' . $id . '" class="' . $class . '">'
+            . $label
             . $this->render($fieldset)
             . '</fieldset>';
     }
