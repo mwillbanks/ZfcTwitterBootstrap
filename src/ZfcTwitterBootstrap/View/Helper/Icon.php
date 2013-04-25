@@ -10,6 +10,7 @@ use Zend\Filter\FilterChain;
 use Zend\Filter\Word\CamelCaseToDash;
 use Zend\Filter\StringToLower;
 use InvalidArgumentException;
+use Exception;
 
 /**
  * Icon

@@ -15,7 +15,7 @@ use Exception;
  */
 class FormWysihtml5 extends FormElement
 {   
-    protected $toolbar = '<ul style="display:none" class="wysihtml5-toolbar">%s</ul>';
+    protected $toolbar = '<ul style="display:none;" class="wysihtml5-toolbar">%s</ul>';
     
     protected $options = array(
         'cleanUp' => 'false',
