@@ -144,8 +144,11 @@ class FormElement extends ZendFormElement
     public function setElementErrorHelper(FormElementErrors $errorHelper)
     {
         $errorHelper->setView($this->getView());
+        $errorHelper->setMessageCloseString('</li></ul></span>')
+                    ->setMessageOpenFormat('<span class="help-block"><ul%s><li>');
+        
         $this->elementErrorHelper = $errorHelper;
-
+        
         return $this;
     }
 
@@ -299,7 +302,7 @@ class FormElement extends ZendFormElement
             $id,
             $elementHelper->render($element),
             $descriptionHelper->render($element),
-            $elementErrorHelper->render($element)
+            $elementErrorHelper->render($element, array('class' => 'unstyled'))
         );
 
         $addtClass = ($element->getMessages()) ? ' error' : '';
