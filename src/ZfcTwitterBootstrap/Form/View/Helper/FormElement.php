@@ -256,32 +256,15 @@ class FormElement extends ZendFormElement
         $controlWrapper = $controlWrapper ?: $this->controlWrapper;
         $renderer = $elementHelper->getView();
 
+        $hiddenElementForCheckbox = '';
+        if (method_exists($element, 'useHiddenElement') && $element->useHiddenElement()) {
+            // If we have hidden input with checkbox's unchecked value, render that separately so it can be prepended later, and unset it in the element
+            $withHidden = $elementHelper->render($element);
+            $withoutHidden = $elementHelper->render($element->setUseHiddenElement(false));
+            $hiddenElementForCheckbox = str_ireplace($withoutHidden, '', $withHidden);
+        }
+
         $id = $element->getAttribute('id') ?: $element->getAttribute('name');
-        $html = "";
-
-        $label = $element->getLabel();
-        if (strlen($label) === 0) {
-            $label = $element->getOption('label') ?: $element->getAttribute('label');
-        }
-
-        if ($label && !$element->getOption('skipLabel')) {
-            $html .= $labelHelper->openTag(array(
-                'for' => $id,
-                'class' => 'control-label',
-            ));
-            if (null !== ($translator = $labelHelper->getTranslator())) {
-                $label = $translator->translate(
-                    $label, $labelHelper->getTranslatorTextDomain()
-                );
-            }
-
-            if ($element->getOption('skipLabelEscape')) {
-                $html .= $label;
-            } else {
-                $html .= $escapeHelper($label);
-            }
-            $html .= $labelHelper->closeTag();
-        }
 
         if (method_exists($renderer, 'plugin')) {
             if ($element instanceof \Zend\Form\Element\Radio) {
@@ -295,9 +278,50 @@ class FormElement extends ZendFormElement
             }
         }
 
-        $html .= sprintf($controlWrapper,
+        $controlLabel = '';
+        $label = $element->getLabel();
+        if (strlen($label) === 0) {
+            $label = $element->getOption('label') ?: $element->getAttribute('label');
+        }
+
+        if ($label && !$element->getOption('skipLabel')) {
+
+            $controlLabel .= $labelHelper->openTag(array(
+                'class' => ($element->getOption('wrapCheckboxInLabel') ? 'checkbox' : 'control-label'),
+            ) + ($element->hasAttribute('id') ? array('for' => $id) : array()));
+
+            if (null !== ($translator = $labelHelper->getTranslator())) {
+                $label = $translator->translate(
+                    $label, $labelHelper->getTranslatorTextDomain()
+                );
+            }
+            if ($element->getOption('wrapCheckboxInLabel')) {
+                $controlLabel .= $elementHelper->render($element) . ' ';
+            }
+            if ($element->getOption('skipLabelEscape')) {
+                $controlLabel .= $label;
+            } else {
+                $controlLabel .= $escapeHelper($label);
+            }
+            $controlLabel .= $labelHelper->closeTag();
+            if ($element instanceof \Zend\Form\Element\Radio
+                || $element instanceof \Zend\Form\Element\MultiCheckbox) {
+                $controlLabel = str_replace(array('<label', '</label>'), array('<div', '</div>'), $controlLabel);
+            }
+        }
+
+        $controls = '';
+
+        if ($element->getOption('wrapCheckboxInLabel')) {
+            $controls = $controlLabel;
+            $controlLabel = '';
+        } else {
+            $controls = $elementHelper->render($element);
+        }
+
+        $html = $hiddenElementForCheckbox . $controlLabel . sprintf($controlWrapper,
             $id,
-            $elementHelper->render($element),
+            $controls,
             $descriptionHelper->render($element),
             $elementErrorHelper->render($element)
         );
