@@ -1,0 +1,22 @@
+<li>
+    <div class="bootstrap-wysihtml5-insert-link-modal modal hide fade">
+        <div class="modal-header">
+            <a class="close" data-dismiss="modal">&times;</a>
+            <h3><?php echo $this->ztbTranslate('Insert Link'); ?></h3>
+        </div>
+        <div class="modal-body">
+            <input value="http://" class="bootstrap-wysihtml5-insert-link-url input-xlarge">
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn" data-dismiss="modal">
+                <?php echo $this->ztbTranslate('Cancel'); ?>
+            </a>
+            <a href="#" class="btn btn-primary" data-dismiss="modal">
+                <?php echo $this->ztbTranslate('Insert Link'); ?>
+            </a>
+        </div>
+    </div>
+    <a class="btn" data-wysihtml5-command="createLink" title="<?php echo $this->ztbTranslate('Insert Link'); ?>">
+        <i class="icon-share"></i>
+    </a>
+</li>

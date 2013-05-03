@@ -6,6 +6,7 @@
 namespace ZfcTwitterBootstrap;
 
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
+use Zend\I18n\Translator\Translator;
 
 /**
  * Module Setup
@@ -42,7 +43,7 @@ class Module implements AutoloaderProviderInterface
     }
 
     /**
-     * Get Service Configuratio
+     * Get Service Configuration
      *
      * @return array
      */
@@ -60,6 +61,26 @@ class Module implements AutoloaderProviderInterface
                     ));
 
                     return $fee;
+                },
+                'ztbTranslate' => function($sm) {
+                    // Configure the translator
+                    $config = $sm->get('config');
+                    $translator = Translator::factory($config['ztbtranslator']);
+                       
+                    // accept languages
+                    // from browser if language not supported then the locale setting
+                    // set in the module config will be used.
+                    $acceptLanguage = \Locale::acceptFromHttp($_SERVER['HTTP_ACCEPT_LANGUAGE']);
+                    $langDir = $config['ztbtranslator']['translation_file_patterns'][0]['base_dir'];
+                    
+                    if(is_file($langDir.'/'.$acceptLanguage.'.php')) {
+                        $translator->setLocale($acceptLanguage);
+                    }
+                    
+                    // and fall back to english.
+                    $translator->setFallbackLocale('en');
+                    
+                    return $translator;
                 },
             ),
         );
