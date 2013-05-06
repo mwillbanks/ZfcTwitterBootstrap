@@ -144,8 +144,9 @@ class FormElement extends ZendFormElement
     public function setElementErrorHelper(FormElementErrors $errorHelper)
     {
         $errorHelper->setView($this->getView());
+        
         $this->elementErrorHelper = $errorHelper;
-
+        
         return $this;
     }
 

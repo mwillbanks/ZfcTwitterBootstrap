@@ -6,6 +6,7 @@
 namespace ZfcTwitterBootstrap;
 
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
+use Zend\Form\View\Helper\FormElementErrors;
 
 /**
  * Module Setup
@@ -42,16 +43,16 @@ class Module implements AutoloaderProviderInterface
     }
 
     /**
-     * Get Service Configuratio
+     * Get View Helper Configuration
      *
      * @return array
      */
-    public function getServiceConfig()
+    public function getViewHelperConfig()
     {
         return array(
             'factories' => array(
                 'formElementErrors' => function ($sm) {
-                    $fee = new \Zend\Form\View\Helper\FormElementErrors();
+                    $fee = new FormElementErrors();
                     $fee->setMessageCloseString('</li></ul>');
                     $fee->setMessageOpenFormat('<ul%s><li>');
                     $fee->setMessageSeparatorString('</li><li>');
