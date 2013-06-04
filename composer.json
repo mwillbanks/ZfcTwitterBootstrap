@@ -17,6 +17,7 @@
         "php": ">=5.3.3",
         "zendframework/zend-filter": "2.*",
         "zendframework/zend-form": "2.*",
+        "zendframework/zend-navigation": "2.*",
         "zendframework/zend-view": "2.*"
     },
     "require-dev": {

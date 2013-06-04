@@ -52,6 +52,9 @@ Features
   * FormRenderer
   * FormElement
   * FormDescription
+* Navigation Integration
+  * Breadcrumbs
+  * Menu
 * View Helpers
   * Alerts
   * Badges
@@ -73,8 +76,8 @@ Roadmap
 * Icons - Completed basic view helper
 * Image - Completed basic view helper
 * Labels - Completed basic view helper
-* Wells - Completed basic viewhelper
-* Zend\Navigation - See current pull request.
+* Wells - Completed basic view helper
+* Zend\Navigation - Completed basic integration
 
 Form Usage
 ----------
@@ -202,6 +205,14 @@ Label Usage
     // explicit types: info, important, inverse, success, warning
     echo $this->ztbLabel()->info('This is a label');
     ?>
+
+
+Navigation Usage
+----------------
+
+    <?php
+    echo $this->ztbnavigation()->ztbmenu($navContainer);
+    echo $this->ztbnavigation()->ztbbreadcrumbs($navContainer);
 
 Well Usage
 -----------
