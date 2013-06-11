@@ -74,10 +74,10 @@ class Icon extends AbstractHelper
      * @param  string      $color
      * @return string|self
      */
-    public function __invoke ($icon = null, $color = '')
+    public function __invoke ($icon = null, $color = '', $appendClass = '')
     {
         if ($icon) {
-            return $this->render($icon, $color);
+            return $this->render($icon, $color, $appendClass);
         }
 
         return $this;
@@ -119,7 +119,7 @@ class Icon extends AbstractHelper
      * @throws Exception
      * @return string
      */
-    public function render($icon, $color = '')
+    public function render($icon, $color = '', $appendClass = '')
     {
         if (!in_array($icon, $this->icons)) {
             throw new Exception($icon . ' icon is not supported');
@@ -129,6 +129,10 @@ class Icon extends AbstractHelper
 
         if ($color) {
             $class .= ' icon-white';
+        }
+
+        if ($appendClass) {
+            $class .= ' '.$appendClass;
         }
 
         $class = trim($class);
