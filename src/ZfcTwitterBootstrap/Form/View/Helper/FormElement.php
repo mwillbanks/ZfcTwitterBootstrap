@@ -319,14 +319,59 @@ class FormElement extends ZendFormElement
         } else {
             $controls = $elementHelper->render($element);
         }
-
-        $html = $hiddenElementForCheckbox . $controlLabel . sprintf($controlWrapper,
-            $id,
-            $controls,
-            $descriptionHelper->render($element),
-            $elementErrorHelper->render($element)
-        );
-
+        $addonInput = ($element->getOption('addonInput') ? $element->getOption('addonInput') : '');
+        if (strlen($addonInput) > 0) {
+            $addonText = $element->getOption('addonText');
+            switch($addonInput) {
+                case 'input-prepend': 
+                    $this->setControlWrapper('<div class="controls %s" id="controls-%s"><span class="add-on">%s</span>%s%s%s</div>');
+                    $controlWrapper = $this->getControlWrapper();
+                    $html = $hiddenElementForCheckbox . $controlLabel . sprintf($controlWrapper,
+                        $addonInput,
+                        $id,
+                        $addonText,
+                        $controls,
+                        $descriptionHelper->render($element),
+                        $elementErrorHelper->render($element)
+                    );
+                    break;
+                    
+                case 'input-append':
+                    $this->setControlWrapper('<div class="controls %s" id="controls-%s">%s<span class="add-on">%s</span>%s%s</div>');
+                    $controlWrapper = $this->getControlWrapper();
+                    $html = $hiddenElementForCheckbox . $controlLabel . sprintf($controlWrapper,
+                        $addonInput,
+                        $id,
+                        $controls,
+                        $addonText,
+                        $descriptionHelper->render($element),
+                        $elementErrorHelper->render($element)
+                    );
+                    break;
+                case 'input-prepend input-append':
+                    $this->setControlWrapper('<div class="controls %s" id="controls-%s"><span class="add-on">%s</span>%s<span class="add-on">%s</span>%s%s</div>');
+                    $controlWrapper = $this->getControlWrapper();
+                    $html = $hiddenElementForCheckbox . $controlLabel . sprintf($controlWrapper,
+                        $addonInput,
+                        $id,
+                        $addonText[0],
+                        $controls,
+                        $addonText[1],
+                        $descriptionHelper->render($element),
+                        $elementErrorHelper->render($element)
+                    );
+                    break;  
+            }
+        } else {
+            $this->setControlWrapper('<div class="controls" id="controls-%s">%s%s%s</div>');
+            $controlWrapper = $this->getControlWrapper();
+            $html = $hiddenElementForCheckbox . $controlLabel . sprintf($controlWrapper,
+                $id,
+                $controls,
+                $descriptionHelper->render($element),
+                $elementErrorHelper->render($element)
+            );
+        }
         $addtClass = ($element->getMessages()) ? ' error' : '';
 
         return sprintf($groupWrapper, $addtClass, $id, $html);
