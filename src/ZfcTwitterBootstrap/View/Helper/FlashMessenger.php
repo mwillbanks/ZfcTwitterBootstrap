@@ -7,11 +7,13 @@ namespace ZfcTwitterBootstrap\View\Helper;
 
 use Zend\Mvc\Controller\Plugin\FlashMessenger as PluginFlashMessenger;
 use Zend\View\Helper\AbstractHelper;
+use Zend\ServiceManager\ServiceLocatorAwareInterface;
+use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
  * Helper to proxy the plugin flash messenger
  */
-class FlashMessenger extends AbstractHelper
+class FlashMessenger extends AbstractHelper implements ServiceLocatorAwareInterface
 {
     /**
      * @var string
@@ -33,6 +35,8 @@ class FlashMessenger extends AbstractHelper
      */
     protected $pluginFlashMessenger;
 
+    private $translator;
+    
     /**
      * @var array Default attributes for the open format tag
      */
@@ -50,6 +54,28 @@ class FlashMessenger extends AbstractHelper
         'h1','h2','h3','h4','h5','h6','b','strong'
     );
 
+    /**
+     * Set the service locator.
+     *
+     * @param ServiceLocatorInterface $serviceLocator
+     *            @return CustomHelper
+     */
+    public function setServiceLocator (ServiceLocatorInterface $serviceLocator)
+    {
+        $this->serviceLocator = $serviceLocator;
+        return $this;
+    }
+    
+    /**
+     * Get the service locator.
+     *
+     * @return \Zend\View\HelperPluginManager
+     */
+    public function getServiceLocator ()
+    {
+        return $this->serviceLocator;
+    }
+    
     /**
      * Returns the flash messenges as a string
      *
@@ -152,7 +178,7 @@ class FlashMessenger extends AbstractHelper
 
                 $messagesToPrint[] = $this->getAlert(
                         $namespace,
-                        $escapeHtml($message['message']),
+                        $this->translate($escapeHtml($message['message'])),
                         $title,
                         $titleTag,
                         $isBlock
@@ -160,7 +186,7 @@ class FlashMessenger extends AbstractHelper
             } else {
                 $messagesToPrint[] = $this->getAlert(
                         $namespace,
-                        $escapeHtml($message)
+                        $this->translate($escapeHtml($message))
                 );
             }
         }
@@ -235,5 +261,27 @@ class FlashMessenger extends AbstractHelper
         $this->pluginFlashMessenger = new PluginFlashMessenger();
 
         return $this->pluginFlashMessenger;
+    }
+    
+    /**
+     *
+     * @param string $message
+     * @return string
+     */
+    public function translate($message){
+        if($this->translator === false){
+            return $message;
+        }
+    
+        if($this->translator === null){
+            if($this->getServiceLocator()->getServiceLocator()->has('translator')){
+                $this->translator = $this->getServiceLocator()->getServiceLocator()->get('translator');
+            } else{
+                $this->translator = false;
+                return $message;
+            }
+        }
+    
+        return $this->translator->translate($message);
     }
 }
