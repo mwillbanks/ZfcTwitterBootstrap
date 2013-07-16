@@ -177,7 +177,7 @@ class Menu extends ZendMenu
                 // start new ul tag
                 if ($ulClass && $depth ==  0) {
                     $ulClass = ' class="' . $ulClass . '"';
-                } else if ($page->getParent()) {
+                } elseif ($page->getParent()) {
                     $ulClass = ' class="dropdown-menu"';
                 } else {
                     $ulClass = '';
