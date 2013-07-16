@@ -77,10 +77,7 @@ class Menu extends ZendMenu
             if ($subPage->isActive(true)) {
                 $liClasses[] = 'active';
             }
-            // Is page parent?
-            if ($subPage->hasPages()) {
-                $liClasses[] = 'dropdown';
-            }
+
             // Add CSS class from page to <li>
             if ($addClassToListItem && $subPage->getClass()) {
                 $liClasses[] = $subPage->getClass();
