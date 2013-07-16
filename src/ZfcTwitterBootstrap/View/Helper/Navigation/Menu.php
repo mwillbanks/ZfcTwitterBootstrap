@@ -204,8 +204,9 @@ class Menu extends ZendMenu
                 $liClasses[] = 'active';
             }
             // Is page parent?
-            if ($page->hasChildren()) {
+            if ($page->hasChildren() && $depth < $maxDepth) {
                 $liClasses[] = 'dropdown';
+                $page->isDropdown = true;
             }
             // Add CSS class from page to <li>
             if ($addClassToListItem && $page->getClass()) {
@@ -274,7 +275,7 @@ class Menu extends ZendMenu
         if ($addClassToListItem === false) {
             $class[] = $page->getClass();
         }
-        if ($page->hasChildren()) {
+        if ($page->isDropdown) {
             $attribs['data-toggle'] = 'dropdown';
             $class[] = 'dropdown-toggle';
             $extended = '<b class="caret"></b>';
