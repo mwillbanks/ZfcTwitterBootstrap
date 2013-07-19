@@ -34,7 +34,7 @@ class Breadcrumbs extends ZendBreadcrumbs
      * @param  boolean      $hasParent if the breadcrumb has a parent
      * @return string
      */
-    public function htmlify(AbstractPage $page, $hasParent = false)
+    public function htmlify(AbstractPage $page, $hasParent = false, $noLink = false)
     {
         if (!$page->getHref()) {
             $page->setHref('#');
@@ -53,8 +53,17 @@ class Breadcrumbs extends ZendBreadcrumbs
             if (null !== ($translator = $this->getTranslator())) {
                 $label = $translator->translate($label, $this->getTranslatorTextDomain());
             }
+            
             $escaper = $this->view->plugin('escapeHtml');
-            $html    .= $escaper($label);
+    		$label = $escaper($label);
+            if (!$noLink)
+            {
+            	$attribs['href'] = $page->getHref();
+            	$html .= '<a' . $this->htmlAttribs($attribs) . '>' . $label . '</a>';
+            } else {
+            	$html .= $label;
+            }
+
         }
 
         if ($hasParent) {
@@ -85,7 +94,7 @@ class Breadcrumbs extends ZendBreadcrumbs
         }
 
         $active = $active['page'];
-        $html = $this->htmlify($active);
+        $html = $this->htmlify($active,false,true);
 
         // walk back to root
         while ($parent = $active->getParent()) {
