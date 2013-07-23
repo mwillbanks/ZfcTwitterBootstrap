@@ -36,29 +36,28 @@ class Breadcrumbs extends ZendBreadcrumbs
      */
     public function htmlify(AbstractPage $page, $hasParent = false)
     {
-        if (!$page->getHref()) {
-            $page->setHref('#');
-        }
-
         $html = '<li';
         if (!$hasParent) {
             $html .= ' class="active"';
         }
         $html .= '>';
 
-        if (!$hasParent && $this->getLinkLast()) {
-            $html .= parent::htmlify($page);
+        $label = $page->getLabel();
+        if (null !== ($translator = $this->getTranslator())) {
+            $label = $translator->translate($label, $this->getTranslatorTextDomain());
+        }
+        $escaper = $this->view->plugin('escapeHtml');
+        $label = $escaper($label);
+
+        if ($page->getHref() && ($hasParent || (!$hasParent && $this->getLinkLast()))) {
+            $anchorAttribs = $this->htmlAttribs(array('href' => $page->getHref()));
+            $html .= '<a' . $anchorAttribs . '>' . $label . '</a>';
         } else {
-            $label = $page->getLabel();
-            if (null !== ($translator = $this->getTranslator())) {
-                $label = $translator->translate($label, $this->getTranslatorTextDomain());
-            }
-            $escaper = $this->view->plugin('escapeHtml');
-            $html    .= $escaper($label);
+            $html .= $label;
         }
 
         if ($hasParent) {
-            $html .= ' <span class="divider">' . $this->getSeparator() . '</span>';
+            $html .= '<span class="divider">' . $this->getSeparator() . '</span>';
         }
         $html .= '</li>';
         return $html;
