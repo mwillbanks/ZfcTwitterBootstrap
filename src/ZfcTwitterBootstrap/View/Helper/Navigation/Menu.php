@@ -202,8 +202,13 @@ class Menu extends ZendMenu
             }
             // Is page parent?
             if ($page->hasChildren() && (!isset($maxDepth) || $depth < $maxDepth)) {
-                $liClasses[] = 'dropdown';
-                $page->isDropdown = true;
+                if (!isset($page->get('dropdown')) && $page->get('dropdown') !== false) {
+                    $liClasses[] = 'dropdown';
+                    $page->isDropdown = true;
+                } else if (!isset($page->get('dropdown')) {
+                    $liClasses[] = 'dropdown';
+                    $page->isDropdown = true;
+                }
             }
             // Add CSS class from page to <li>
             if ($addClassToListItem && $page->getClass()) {
