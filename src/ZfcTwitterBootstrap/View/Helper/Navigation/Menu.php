@@ -202,7 +202,7 @@ class Menu extends ZendMenu
             }
             // Is page parent?
             if ($page->hasChildren() && (!isset($maxDepth) || $depth < $maxDepth)) {
-                $liClasses[] = 'dropdown';
+                $liClasses[] = ($depth == 0) ? 'dropdown': 'dropdown-submenu';
                 $page->isDropdown = true;
             }
             // Add CSS class from page to <li>
