@@ -44,7 +44,8 @@ class Menu extends ZendMenu
         $minDepth,
         $maxDepth,
         $escapeLabels,
-        $addClassToListItem
+        $addClassToListItem,
+        $liActiveClass = null
     ) {
         if (!$active = $this->findActive($container, $minDepth - 1, $maxDepth)) {
             return '';
@@ -115,7 +116,8 @@ class Menu extends ZendMenu
         $maxDepth,
         $onlyActive,
         $escapeLabels,
-        $addClassToListItem
+        $addClassToListItem,
+        $liActiveClass = null
     ) {
         $html = '';
 
