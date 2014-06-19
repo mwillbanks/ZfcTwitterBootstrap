@@ -41,7 +41,7 @@ FORMAT;
      */
     public function error($alert, $isBlock = false)
     {
-        return $this->render($alert, $isBlock, 'alert-error');
+        return $this->render($alert, $isBlock, 'alert-danger');
     }
 
     /**
