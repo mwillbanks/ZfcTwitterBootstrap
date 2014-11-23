@@ -277,7 +277,7 @@ class Menu extends ZendMenu
         if ($page->isDropdown) {
             $attribs['data-toggle'] = 'dropdown';
             $class[] = 'dropdown-toggle';
-            $extended = '<b class="caret"></b>';
+            $extended = ' <b class="caret"></b>';
         }
         if (count($class) > 0) {
             $attribs['class'] = implode(' ', $class);

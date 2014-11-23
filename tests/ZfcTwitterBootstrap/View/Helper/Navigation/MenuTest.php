@@ -60,7 +60,7 @@ class MenuTest extends \PHPUnit_Framework_TestCase
         <a id="menu-p1" href="p1">Page 1</a>
     </li>
     <li class="dropdown">
-        <a id="menu-p2" href="p2" data-toggle="dropdown" class=" dropdown-toggle">Page 2<b class="caret"></b></a>
+        <a id="menu-p2" href="p2" data-toggle="dropdown" class=" dropdown-toggle">Page 2 <b class="caret"></b></a>
         <ul class="dropdown-menu">
             <li>
                 <a id="menu-p2-1" href="p2-1">Page 2.1</a>
